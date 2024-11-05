@@ -1385,11 +1385,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj",
+      "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj",
       "projectName": "ArgentoApp.Backend.Business",
-      "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj",
+      "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj",
       "packagesPath": "/Users/iremozacar/.nuget/packages/",
-      "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Business/obj/",
+      "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Business/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/iremozacar/.nuget/NuGet/NuGet.Config"
@@ -1405,11 +1405,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj": {
-              "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj"
+            "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj": {
+              "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj"
             },
-            "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj": {
-              "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj"
+            "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj": {
+              "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj"
             }
           }
         }

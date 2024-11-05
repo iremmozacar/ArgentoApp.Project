@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BEZM9WbsYJc=",
+  "dgSpecHash": "wRpwOqgqJvQ=",
   "success": true,
-  "projectFilePath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj",
+  "projectFilePath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj",
   "expectedPackageFiles": [
     "/Users/iremozacar/.nuget/packages/microsoft.data.sqlite.core/8.0.8/microsoft.data.sqlite.core.8.0.8.nupkg.sha512",
     "/Users/iremozacar/.nuget/packages/microsoft.entityframeworkcore/8.0.8/microsoft.entityframeworkcore.8.0.8.nupkg.sha512",

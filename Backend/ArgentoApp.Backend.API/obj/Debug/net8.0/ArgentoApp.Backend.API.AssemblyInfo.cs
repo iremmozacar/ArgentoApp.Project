@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArgentoApp.Backend.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca568d6a9e3203bad24ec17954e9128b4f1ab00e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0a09aa09e3d43badd83dc362ad17a880848ae03")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArgentoApp.Backend.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArgentoApp.Backend.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

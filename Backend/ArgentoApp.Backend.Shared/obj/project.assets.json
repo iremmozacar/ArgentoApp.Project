@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj",
+      "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj",
       "projectName": "ArgentoApp.Backend.Shared",
-      "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj",
+      "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj",
       "packagesPath": "/Users/iremozacar/.nuget/packages/",
-      "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/obj/",
+      "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/iremozacar/.nuget/NuGet/NuGet.Config"

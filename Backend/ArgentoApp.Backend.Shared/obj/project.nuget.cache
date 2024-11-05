@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4yUKSm3uhdQ=",
+  "dgSpecHash": "mkBCtBPU2zY=",
   "success": true,
-  "projectFilePath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj",
+  "projectFilePath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

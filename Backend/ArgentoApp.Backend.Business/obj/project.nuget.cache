@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TuE4oOg269E=",
+  "dgSpecHash": "kbnTrOO8l/M=",
   "success": true,
-  "projectFilePath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj",
+  "projectFilePath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj",
   "expectedPackageFiles": [
     "/Users/iremozacar/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/iremozacar/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

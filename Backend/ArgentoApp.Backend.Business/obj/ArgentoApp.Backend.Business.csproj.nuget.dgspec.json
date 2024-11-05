@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj": {}
+    "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj": {}
   },
   "projects": {
-    "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj": {
+    "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj",
+        "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj",
         "projectName": "ArgentoApp.Backend.Business",
-        "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj",
+        "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Business/ArgentoApp.Backend.Business.csproj",
         "packagesPath": "/Users/iremozacar/.nuget/packages/",
-        "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Business/obj/",
+        "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Business/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/iremozacar/.nuget/NuGet/NuGet.Config"
@@ -27,11 +27,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj": {
-                "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj"
+              "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj": {
+                "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj"
               },
-              "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj": {
-                "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj"
+              "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj": {
+                "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj"
               }
             }
           }
@@ -76,14 +76,14 @@
         }
       }
     },
-    "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj": {
+    "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj",
+        "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj",
         "projectName": "ArgentoApp.Backend.Data",
-        "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj",
+        "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Data/ArgentoApp.Backend.Data.csproj",
         "packagesPath": "/Users/iremozacar/.nuget/packages/",
-        "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Data/obj/",
+        "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Data/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/iremozacar/.nuget/NuGet/NuGet.Config"
@@ -99,11 +99,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Entity/ArgentoApp.Backend.Entity.csproj": {
-                "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Entity/ArgentoApp.Backend.Entity.csproj"
+              "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Entity/ArgentoApp.Backend.Entity.csproj": {
+                "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Entity/ArgentoApp.Backend.Entity.csproj"
               },
-              "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj": {
-                "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj"
+              "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj": {
+                "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj"
               }
             }
           }
@@ -148,14 +148,14 @@
         }
       }
     },
-    "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Entity/ArgentoApp.Backend.Entity.csproj": {
+    "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Entity/ArgentoApp.Backend.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Entity/ArgentoApp.Backend.Entity.csproj",
+        "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Entity/ArgentoApp.Backend.Entity.csproj",
         "projectName": "ArgentoApp.Backend.Entity",
-        "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Entity/ArgentoApp.Backend.Entity.csproj",
+        "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Entity/ArgentoApp.Backend.Entity.csproj",
         "packagesPath": "/Users/iremozacar/.nuget/packages/",
-        "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Entity/obj/",
+        "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Entity/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/iremozacar/.nuget/NuGet/NuGet.Config"
@@ -171,8 +171,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj": {
-                "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj"
+              "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj": {
+                "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj"
               }
             }
           }
@@ -211,14 +211,14 @@
         }
       }
     },
-    "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj": {
+    "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj",
+        "projectUniqueName": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj",
         "projectName": "ArgentoApp.Backend.Shared",
-        "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj",
+        "projectPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/ArgentoApp.Backend.Shared.csproj",
         "packagesPath": "/Users/iremozacar/.nuget/packages/",
-        "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp_MVC/Backend/ArgentoApp.Backend.Shared/obj/",
+        "outputPath": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Backend/ArgentoApp.Backend.Shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/iremozacar/.nuget/NuGet/NuGet.Config"
