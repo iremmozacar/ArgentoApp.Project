@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ArgentoApp.Backend.Entity/1.0.0": {
+        "dependencies": {
+          "ArgentoApp.Backend.Shared": "1.0.0"
+        },
+        "runtime": {
+          "ArgentoApp.Backend.Entity.dll": {}
+        }
+      },
+      "ArgentoApp.Backend.Shared/1.0.0": {
+        "runtime": {
+          "ArgentoApp.Backend.Shared.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ArgentoApp.Backend.Entity/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ArgentoApp.Backend.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
