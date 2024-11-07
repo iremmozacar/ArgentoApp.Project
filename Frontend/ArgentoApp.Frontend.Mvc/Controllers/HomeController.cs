@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ArgentoApp.Frontend.Mvc.Models;
 using Newtonsoft.Json;
+using ArgentoApp.Frontend.Mvc.Repositories;
 
 namespace ArgentoApp.Frontend.Mvc.Controllers;
 
@@ -24,7 +25,7 @@ public class HomeController : Controller
 
      
          ProductsCategories model = new (){
-            CategoryList=responseCategoryList,
+            CategoryList= await CategoryRepository.GetActives(),
             ProductList=null
          };
 
