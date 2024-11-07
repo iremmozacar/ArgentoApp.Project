@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ArgentoApp.Frontend.Mvc/1.0.0": {
+        "runtime": {
+          "ArgentoApp.Frontend.Mvc.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ArgentoApp.Frontend.Mvc/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
