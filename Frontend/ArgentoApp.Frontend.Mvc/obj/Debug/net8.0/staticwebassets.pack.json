@@ -705,6 +705,18 @@
       "PackagePath": "staticwebassets/ui/img/hero/slider-3.png"
     },
     {
+      "Id": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/wwwroot/ui/img/hero/slider1.jpg",
+      "PackagePath": "staticwebassets/ui/img/hero/slider1.jpg"
+    },
+    {
+      "Id": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/wwwroot/ui/img/hero/slider11.jpg",
+      "PackagePath": "staticwebassets/ui/img/hero/slider11.jpg"
+    },
+    {
+      "Id": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/wwwroot/ui/img/hero/slider222.jpg",
+      "PackagePath": "staticwebassets/ui/img/hero/slider222.jpg"
+    },
+    {
       "Id": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/wwwroot/ui/img/hero/watch.png",
       "PackagePath": "staticwebassets/ui/img/hero/watch.png"
     },
