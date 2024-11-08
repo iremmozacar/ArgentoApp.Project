@@ -26,7 +26,7 @@ public class HomeController : Controller
      
          ProductsCategories model = new (){
             CategoryList= await CategoryRepository.GetActives(),
-            ProductList=null
+            ProductList=await ProductRepository.GetHomesAsync(),
          };
 
         return View(model);
