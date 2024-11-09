@@ -21,7 +21,7 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
             using (HttpClient httpClient = new HttpClient())
             {
                 // API çağrısında isHome parametresini doğru şekilde ekliyoruz
-                string url = $"http://localhost:5259/api/Categories/GetHomes/{isHome}";
+                string url = $"http://localhost:5200/api/Categories/GetHomes/{isHome}";
                 HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
 
                 if (httpResponseMessage.IsSuccessStatusCode)

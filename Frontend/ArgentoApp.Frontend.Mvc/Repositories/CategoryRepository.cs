@@ -20,7 +20,7 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
             using (HttpClient httpClient = new HttpClient())
             {
                 // API çağrısında isActive parametresini doğru şekilde ekliyoruz
-                string url = $"http://localhost:5259/api/Categories/GetActives/{isActive}";
+                string url = $"http://localhost:5200/api/Categories/GetActives/{isActive}";
                 HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
 
                 if (httpResponseMessage.IsSuccessStatusCode)
@@ -44,7 +44,7 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
 
             using (HttpClient httpClient = new HttpClient())
             {
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5259/api/Categories/GetAll");
+                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5200/api/Categories/GetAll");
 
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
