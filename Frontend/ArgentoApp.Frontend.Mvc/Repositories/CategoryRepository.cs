@@ -1,58 +1,64 @@
 using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using ArgentoApp.Frontend.Mvc.Models;
 using Newtonsoft.Json;
 
-namespace ArgentoApp.Frontend.Mvc.Repositories;
-
-public static class  CategoryRepository
+namespace ArgentoApp.Frontend.Mvc.Repositories
 {
-    /// <summary>
-    /// Bu metot API'dan aktif/pasif kategori bilgilerini çekip bir liste halinde döndürür. 
-    /// </summary>
-    /// <returns></returns>
-public static async Task<List<CategoryModel>> GetActives (bool isActive= true)
-{
-        ResponseModel<List<CategoryModel>> responseCategoryModel = new();
-        using (HttpClient httpClient = new HttpClient())
-        {
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5000/api/Categories/GetActives/{isActives}");
-            string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-            responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryModel>>>(contentResponse);
-
-        }
-        List<CategoryModel> responseCategoryList = responseCategoryModel.IsSucceeded ? responseCategoryModel.Data : [];
-
-
-
-        ProductsCategories model = new()
-        {
-            CategoryList = responseCategoryList,
-            ProductList = null
-        };
-
-        return responseCategoryList;
-    }
-
-    public static async Task<List<CategoryModel>> GetAllAsync()
+    public static class CategoryRepository
     {
-        ResponseModel<List<CategoryModel>> responseCategoryModel = new();
-        using (HttpClient httpClient = new HttpClient())
+        /// <summary>
+        /// Bu metot API'den aktif/pasif kategori bilgilerini çekip bir liste halinde döndürür. 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<CategoryModel>> GetActives(bool isActive = true)
         {
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5000/api/Categories/GetAll");
-            string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-            responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryModel>>>(contentResponse);
+            ResponseModel<List<CategoryModel>> responseCategoryModel = new();
 
+            using (HttpClient httpClient = new HttpClient())
+            {
+                // API çağrısında isActive parametresini doğru şekilde ekliyoruz
+                string url = $"http://localhost:5259/api/Categories/GetActives/{isActive}";
+                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
+                    responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryModel>>>(contentResponse);
+                }
+            }
+
+            // Null kontrolü ekleyerek listeyi oluşturuyoruz
+            List<CategoryModel> responseCategoryList = (responseCategoryModel != null && responseCategoryModel.IsSucceeded)
+                ? responseCategoryModel.Data
+                : new List<CategoryModel>();
+
+            return responseCategoryList;
         }
-        List<CategoryModel> responseCategoryList = responseCategoryModel.IsSucceeded ? responseCategoryModel.Data : [];
 
-
-
-        ProductsCategories model = new()
+        public static async Task<List<CategoryModel>> GetAllAsync()
         {
-            CategoryList = responseCategoryList,
-            ProductList = null
-        };
+            ResponseModel<List<CategoryModel>> responseCategoryModel = new();
 
-        return responseCategoryList;
+            using (HttpClient httpClient = new HttpClient())
+            {
+                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5259/api/Categories/GetAll");
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
+                    responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryModel>>>(contentResponse);
+                }
+            }
+
+            // Null kontrolü ekleyerek listeyi oluşturuyoruz
+            List<CategoryModel> responseCategoryList = (responseCategoryModel != null && responseCategoryModel.IsSucceeded)
+                ? responseCategoryModel.Data
+                : new List<CategoryModel>();
+
+            return responseCategoryList;
+        }
     }
 }
