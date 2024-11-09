@@ -8,7 +8,6 @@ namespace ArgentoApp.Frontend.Mvc.Controllers;
 
 public class HomeController : Controller
 {
-
     public async Task<IActionResult> Index()
     {
         #region Kategorileri API'dan çekiyoruz
@@ -28,7 +27,7 @@ public class HomeController : Controller
         ResponseModel<List<ProductModel>> responseProductModel = new();
         using (HttpClient httpClient = new HttpClient())
         {
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5259/api/Products/GetHomes");
+            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5259/api/Products/GetHomes/true");
             string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
             responseProductModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductModel>>>(contentResponse);
         }
@@ -43,6 +42,7 @@ public class HomeController : Controller
             Debug.WriteLine("Ürün listesi boş.");
         }
 
+        // Model oluşturma
         ProductsCategories model = new()
         {
             CategoryList = responseCategoryList,
@@ -51,5 +51,4 @@ public class HomeController : Controller
 
         return View(model);
     }
-
 }
