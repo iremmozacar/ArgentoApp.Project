@@ -185,6 +185,10 @@
       "PackagePath": "staticwebassets/admin/dist/img/logo.png"
     },
     {
+      "Id": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/wwwroot/admin/dist/img/logol.png",
+      "PackagePath": "staticwebassets/admin/dist/img/logol.png"
+    },
+    {
       "Id": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/wwwroot/admin/dist/img/photo1.png",
       "PackagePath": "staticwebassets/admin/dist/img/photo1.png"
     },

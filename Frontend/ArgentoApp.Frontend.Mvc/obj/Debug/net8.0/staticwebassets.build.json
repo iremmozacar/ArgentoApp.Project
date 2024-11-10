@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0GnVhAL6AzhMYR+cxE3YhjzKPgfBHsbTLnDvHIlNU9c=",
+  "Hash": "8MuSorQ7P/W3MJlbGKS+4nr9LaCjBM9hkElOxsGCT3Q=",
   "Source": "ArgentoApp.Frontend.Mvc",
   "BasePath": "_content/ArgentoApp.Frontend.Mvc",
   "Mode": "Default",
@@ -908,6 +908,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/admin/dist/img/logo.png"
+    },
+    {
+      "Identity": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/wwwroot/admin/dist/img/logol.png",
+      "SourceId": "ArgentoApp.Frontend.Mvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/wwwroot/",
+      "BasePath": "_content/ArgentoApp.Frontend.Mvc",
+      "RelativePath": "admin/dist/img/logol.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/admin/dist/img/logol.png"
     },
     {
       "Identity": "/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/wwwroot/admin/dist/img/photo1.png",

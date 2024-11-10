@@ -6,6 +6,8 @@
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/ArgentoApp.Frontend.Mvc.runtimeconfig.json
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/ArgentoApp.Frontend.Mvc.dll
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/ArgentoApp.Frontend.Mvc.pdb
+/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.csproj.AssemblyReference.cache
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.GeneratedMSBuildEditorConfig.editorconfig
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.AssemblyInfoInputs.cache
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.AssemblyInfo.cs
@@ -24,11 +26,9 @@
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/scopedcss/bundle/ArgentoApp.Frontend.Mvc.styles.css
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/scopedcss/projectbundle/ArgentoApp.Frontend.Mvc.bundle.scp.css
+/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoA.A069F6F0.Up2Date
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.dll
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/refint/ArgentoApp.Frontend.Mvc.dll
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.pdb
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.genruntimeconfig.cache
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ref/ArgentoApp.Frontend.Mvc.dll
-/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/Newtonsoft.Json.dll
-/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.csproj.AssemblyReference.cache
-/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoA.A069F6F0.Up2Date
