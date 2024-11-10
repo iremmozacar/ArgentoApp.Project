@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewData["PageHeader"] = "Ürünler Anasayfa";
+    ViewData["ShowButton"] = true;
+    ViewData["ButtonTitle"] = "Ürün Ekle";
+    ViewData["ButtonLink"] = "/admin/product/create";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <table id="my-data-table" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th width="70">Id</th>
+                    <th width="80">Resim</th>
+                    <th>Ürün</th>
+                    <th width="100">Fiyat</th>
+                    <th width="70">Aktif</th>
+                    <th width="70">Anasayfa</th>
+                    <th width="80">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var p in Model)
+                    {
+                        <tr>
+                            <td>@p.Id</td>
+                            <td>
+                                <img src="http://localhost:5200/images/products/@p.ImageUrl" width="40" />
+                            </td>
+                            <td>@p.Name</td>
+                            <td>@($"{p.Price:C0}")</td>
+                            <td>@p.IsActive</td>
+                            <td>@p.IsHome</td>
+                            <td>
+                                <a class="btn btn-warning btn-sm">Detay</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7">Gösterilecek veri bulunamadı.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+@section Scripts {
+    <!-- DataTables  & Plugins -->
+    <script src="~/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/admin/plugins/jszip/jszip.min.js"></script>
+    <script src="~/admin/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/admin/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    @await Html.PartialAsync("_DataTablesPartial")
+}
