@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using ArgentoApp.Frontend.Mvc.Models.Category;
 
 namespace ArgentoApp.Frontend.Mvc.Models.Product;
 
@@ -31,4 +32,6 @@ public class ProductViewModel
     [JsonPropertyName("categoryId")]
     public int CategoryId { get; set; }
 
+    [JsonPropertyName("category")]
+    public CategoryViewModel Category { get; set; }
 }

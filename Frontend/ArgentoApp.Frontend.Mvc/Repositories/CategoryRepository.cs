@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using ArgentoApp.Frontend.Mvc.Models;
 using Newtonsoft.Json;
+using ArgentoApp.Frontend.Mvc.Models.Category;
 
 namespace ArgentoApp.Frontend.Mvc.Repositories
 {
@@ -13,9 +14,9 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
         /// Bu metot API'den aktif/pasif kategori bilgilerini çekip bir liste halinde döndürür. 
         /// </summary>
         /// <returns></returns>
-        public static async Task<List<CategoryModel>> GetActives(bool isActive = true)
+        public static async Task<List<CategoryViewModel>> GetActives(bool isActive = true)
         {
-            ResponseModel<List<CategoryModel>> responseCategoryModel = new();
+            ResponseModel<List<CategoryViewModel>> responseCategoryModel = new();
 
             using (HttpClient httpClient = new HttpClient())
             {
@@ -26,21 +27,21 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                    responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryModel>>>(contentResponse);
+                    responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
                 }
             }
 
             // Null kontrolü ekleyerek listeyi oluşturuyoruz
-            List<CategoryModel> responseCategoryList = (responseCategoryModel != null && responseCategoryModel.IsSucceeded)
+            List<CategoryViewModel> responseCategoryList = (responseCategoryModel != null && responseCategoryModel.IsSucceeded)
                 ? responseCategoryModel.Data
-                : new List<CategoryModel>();
+                : new List<CategoryViewModel>();
 
             return responseCategoryList;
         }
 
-        public static async Task<List<CategoryModel>> GetAllAsync()
+        public static async Task<List<CategoryViewModel>> GetAllAsync()
         {
-            ResponseModel<List<CategoryModel>> responseCategoryModel = new();
+            ResponseModel<List<CategoryViewModel>> responseCategoryModel = new();
 
             using (HttpClient httpClient = new HttpClient())
             {
@@ -49,14 +50,14 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                    responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryModel>>>(contentResponse);
+                    responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
                 }
             }
 
             // Null kontrolü ekleyerek listeyi oluşturuyoruz
-            List<CategoryModel> responseCategoryList = (responseCategoryModel != null && responseCategoryModel.IsSucceeded)
+            List<CategoryViewModel> responseCategoryList = (responseCategoryModel != null && responseCategoryModel.IsSucceeded)
                 ? responseCategoryModel.Data
-                : new List<CategoryModel>();
+                : new List<CategoryViewModel>();
 
             return responseCategoryList;
         }

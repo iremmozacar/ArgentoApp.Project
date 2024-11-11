@@ -15,9 +15,9 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
         /// </summary>
         /// <param name="isHome">Ana sayfa için ürün listesi almak isteniyorsa true olarak ayarlanır.</param>
         /// <returns>Ürün model listesini döndürür.</returns>
-        public static async Task<List<ProductModel>> GetHomesAsync(bool isHome = true)
+        public static async Task<List<ProductViewModel>> GetHomesAsync(bool isHome = true)
         {
-            ResponseModel<List<ProductModel>> responseProductModel = null;
+            ResponseModel<List<ProductViewModel>> responseProductModel = null;
 
             using (HttpClient httpClient = new HttpClient())
             {
@@ -28,13 +28,13 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                    responseProductModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductModel>>>(contentResponse);
+                    responseProductModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductViewModel>>>(contentResponse);
                 }
             }
 
-            List<ProductModel> responseProductList = (responseProductModel != null && responseProductModel.IsSucceeded)
+            List<ProductViewModel> responseProductList = (responseProductModel != null && responseProductModel.IsSucceeded)
                 ? responseProductModel.Data
-                : new List<ProductModel>();
+                : new List<ProductViewModel>();
 
             return responseProductList;
         }

@@ -1,150 +1,145 @@
-﻿
-@model ProductsCategories
+﻿@model ArgentoApp.Frontend.Mvc.Models.Product.ProductsCategoriesViewModel
 @{
-    List<CategoryModel> categories = Model.CategoryList;
-        List<ProductModel> products = Model.ProductList;
-        
+    var categories = Model.CategoryList;
+    var products = Model.ProductList;
 }
 
 
+<!--? slider Area Start -->
+<div class="slider-area">
+    <div class="slider-active">
+        <!-- First Slider -->
+        <div class="single-slider slider-height d-flex align-items-center slide-bg"
+            style="height: 200px; background-image: url('/ui/img/hero/sli.jpg'); background-size: cover; background-position: center;">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <div class="hero__caption1">
+                            <h1 data-animation="fadeInLeft" data-delay=".3s" data-duration="1000ms">Enerjinizi
 
-    <!--? slider Area Start -->
-    <div class="slider-area">
-        <div class="slider-active">
-            <!-- First Slider -->
-            <div class="single-slider slider-height d-flex align-items-center slide-bg"
-                style="height: 200px; background-image: url('/ui/img/hero/sli.jpg'); background-size: cover; background-position: center;">
-                <div class="container">
-                    <div class="row justify-content-between align-items-center">
-                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                            <div class="hero__caption1">
-                                <h1 data-animation="fadeInLeft" data-delay=".3s" data-duration="1000ms">Enerjinizi
-                                    Yükseltin
-                                </h1>
-                                <p data-animation="fadeInLeft" data-delay=".3s" data-duration="1000ms">
-                                    Doğal taşların sunduğu güzellikleri ve enerjileriyle dolu takılar, sizin için
-                                    hayat
-                                    buluyor. Şıklığınızı yansıtan
-                                    parçaları seçin!
-                                </p>
-                                <div class="hero__btn" data-animation="fadeInLeft" data-delay=".2s"
-                                    data-duration="1000ms">
-                                    <a href="industries.html" class="btn hero-btn">Alışverişe başla</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
-                            <div class="hero__img" data-animation="bounceIn" data-delay=".3s">
-                                <img src="~/ui/img/hero/ametist.png" alt="" class="heartbeat">
+                                Yükseltin
+                            </h1>
+                            <p data-animation="fadeInLeft" data-delay=".3s" data-duration="1000ms">
+                                Doğal taşların sunduğu güzellikleri ve enerjileriyle dolu takılar, sizin için
+                                hayat
+                                buluyor. Şıklığınızı yansıtan
+                                parçaları seçin!
+                            </p>
+                            <div class="hero__btn" data-animation="fadeInLeft" data-delay=".2s" data-duration="1000ms">
+                                <a href="industries.html" class="btn hero-btn">Alışverişe başla</a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div> ...
-
-            <!-- Second Slider -->
-            <div class="single-slider slider-height d-flex align-items-center slide-bg"
-                style="height: 200px; background-image: url('/ui/img/hero/slider1.jpg'); background-size: cover; background-position: center;">
-                <div class="container">
-                    <div class="row justify-content-between align-items-center">
-                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                            <div class="hero__caption">
-                                <h1 data-animation="fadeInLeft" data-delay=".3s" data-duration="2000ms">Benzersiz
-                                    Parçalar
-                                </h1>
-                                <p data-animation="fadeInLeft" data-delay=".2s" data-duration="2000ms">
-                                    Doğal taşların mistik enerjisiyle tasarladığınız takılarla içsel dengenizi
-                                    bulabilirsiniz. Şimdi hayalinizdeki takıyı yaratma zamanı!
-                                </p>
-                                <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s"
-                                    data-duration="1000ms">
-                                    <a href="industries.html" class="btn hero-btn">Kendi Parçanızı Tasarlayın</a>
-                                </div>
-                            </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+                        <div class="hero__img" data-animation="bounceIn" data-delay=".3s">
+                            <img src="~/ui/img/hero/ametist.png" alt="" class="heartbeat">
                         </div>
-
                     </div>
                 </div>
             </div>
+        </div> ...
 
-
-
-            <!-- 3 Slider -->
-            <div class="single-slider slider-height d-flex align-items-center slide-bg"
-                style="height: 200px; background-image: url('/ui/img/hero/slider-3.png'); background-size: cover; background-position: center;">
-                <div class="container">
-                    <div class="row justify-content-between align-items-center">
-                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                            <div class="hero__caption">
-                                <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Benzersiz
-                                    Parçalar
-                                </h1>
-                                <p data-animation="fadeInLeft" data-delay=".3s" data-duration="2000ms">
-                                    Doğal taşların mistik enerjisiyle tasarladığınız takılarla içsel dengenizi
-                                    bulabilirsiniz. Şimdi hayalinizdeki takıyı yaratma zamanı!
-                                </p>
-                                <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s"
-                                    data-duration="1000ms">
-                                    <a href="industries.html" class="btn hero-btn">Kendi Parçanızı Tasarlayın</a>
-                                </div>
+        <!-- Second Slider -->
+        <div class="single-slider slider-height d-flex align-items-center slide-bg"
+            style="height: 200px; background-image: url('/ui/img/hero/slider1.jpg'); background-size: cover; background-position: center;">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <div class="hero__caption">
+                            <h1 data-animation="fadeInLeft" data-delay=".3s" data-duration="2000ms">Benzersiz
+                                Parçalar
+                            </h1>
+                            <p data-animation="fadeInLeft" data-delay=".2s" data-duration="2000ms">
+                                Doğal taşların mistik enerjisiyle tasarladığınız takılarla içsel dengenizi
+                                bulabilirsiniz. Şimdi hayalinizdeki takıyı yaratma zamanı!
+                            </p>
+                            <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="1000ms">
+                                <a href="industries.html" class="btn hero-btn">Kendi Parçanızı Tasarlayın</a>
                             </div>
                         </div>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 3 Slider -->
+        <div class="single-slider slider-height d-flex align-items-center slide-bg"
+            style="height: 200px; background-image: url('/ui/img/hero/slider-3.png'); background-size: cover; background-position: center;">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <div class="hero__caption">
+                            <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Benzersiz
+                                Parçalar
+                            </h1>
+                            <p data-animation="fadeInLeft" data-delay=".3s" data-duration="2000ms">
+                                Doğal taşların mistik enerjisiyle tasarladığınız takılarla içsel dengenizi
+                                bulabilirsiniz. Şimdi hayalinizdeki takıyı yaratma zamanı!
+                            </p>
+                            <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="1000ms">
+                                <a href="industries.html" class="btn hero-btn">Kendi Parçanızı Tasarlayın</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- ? New Product Start -->
+<section class="new-product-area section-padding30">
+    <div class="container">
+        <!-- Section tittle -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section-tittle mb-70">
+                    <h2>Çok Satanlar </h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                <div class="single-new-pro mb-30 text-center">
+                    <div class="product-img">
+                        <img src="~/ui/img/gallery/new_product1.png" alt="">
+                    </div>
+                    <div class="product-caption">
+                        <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                        <span>$ 45,743</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                <div class="single-new-pro mb-30 text-center">
+                    <div class="product-img">
+                        <img src="~/ui/img/gallery/new_product2.png" alt="">
+                    </div>
+                    <div class="product-caption">
+                        <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                        <span>$ 45,743</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                <div class="single-new-pro mb-30 text-center">
+                    <div class="product-img">
+                        <img src="~/ui/img/gallery/new_product3.png" alt="">
+                    </div>
+                    <div class="product-caption">
+                        <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                        <span>$ 45,743</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    <!-- ? New Product Start -->
-    <section class="new-product-area section-padding30">
-        <div class="container">
-            <!-- Section tittle -->
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section-tittle mb-70">
-                        <h2>Çok Satanlar </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-new-pro mb-30 text-center">
-                        <div class="product-img">
-                            <img src="~/ui/img/gallery/new_product1.png" alt="">
-                        </div>
-                        <div class="product-caption">
-                            <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                            <span>$ 45,743</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-new-pro mb-30 text-center">
-                        <div class="product-img">
-                            <img src="~/ui/img/gallery/new_product2.png" alt="">
-                        </div>
-                        <div class="product-caption">
-                            <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                            <span>$ 45,743</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-new-pro mb-30 text-center">
-                        <div class="product-img">
-                            <img src="~/ui/img/gallery/new_product3.png" alt="">
-                        </div>
-                        <div class="product-caption">
-                            <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                            <span>$ 45,743</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--  New Product End -->
+</section>
+<!--  New Product End -->
 
 
 
@@ -213,43 +208,42 @@
 
 
 
-    <!--? Watch Choice  Start-->
-    <div class="watch-area section-padding30">
-        <div class="container">
-            <div class="row align-items-center justify-content-between padding-130">
-                <div class="col-lg-5 col-md-6">
-                    <div class="watch-details mb-40">
-                        <h2>Kendin Tasarla</h2>
-                        <p>Şifa, kişiye özeldir; kendi tarzınıza uygun doğal taşlar ve diğer detaylarla, sizin için
-                            tasarlanmış özel bir bileklik
-                            veya kolye oluşturun.</p>
-                        <a href="shop.html" class="btn">Kendi Parçanızı Tasarlayın</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-10">
-                    <div class="choice-watch-img mb-40">
-                        <img src="~/ui/img/gallery/choce_watch1.png" alt="">
-                    </div>
+<!--? Watch Choice  Start-->
+<div class="watch-area section-padding30">
+    <div class="container">
+        <div class="row align-items-center justify-content-between padding-130">
+            <div class="col-lg-5 col-md-6">
+                <div class="watch-details mb-40">
+                    <h2>Kendin Tasarla</h2>
+                    <p>Şifa, kişiye özeldir; kendi tarzınıza uygun doğal taşlar ve diğer detaylarla, sizin için
+                        tasarlanmış özel bir bileklik
+                        veya kolye oluşturun.</p>
+                    <a href="shop.html" class="btn">Kendi Parçanızı Tasarlayın</a>
                 </div>
             </div>
-            <div class="row align-items-center justify-content-between">
-                <div class="col-lg-6 col-md-6 col-sm-10">
-                    <div class="choice-watch-img mb-40">
-                        <img src="~/ui/img/gallery/choce_watch2.png" alt="">
-                    </div>
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <div class="choice-watch-img mb-40">
+                    <img src="~/ui/img/gallery/choce_watch1.png" alt="">
                 </div>
-                <div class="col-lg-5 col-md-6">
-                    <div class="watch-details mb-40">
-                        <h2>Burcuna Özel</h2>
-                        <p>Burcunuza uygun doğal taşları keşfederek, yaşamınıza şifa katın! Kendi burcunuza en uygun
-                            doğal taşları keşfedin ve hayatınıza olumlu bir etki
-                            bırakın. Kendinizi daha iyi hissetmek ve ruhsal dengeyi sağlamak için şimdi burcunuza
-                            özel taşlarınızı seçin!</p>
-                        <a href="shop.html" class="btn">Burç Taşlarınızı Keşfedin</a>
-                    </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-between">
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <div class="choice-watch-img mb-40">
+                    <img src="~/ui/img/gallery/choce_watch2.png" alt="">
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6">
+                <div class="watch-details mb-40">
+                    <h2>Burcuna Özel</h2>
+                    <p>Burcunuza uygun doğal taşları keşfederek, yaşamınıza şifa katın! Kendi burcunuza en uygun
+                        doğal taşları keşfedin ve hayatınıza olumlu bir etki
+                        bırakın. Kendinizi daha iyi hissetmek ve ruhsal dengeyi sağlamak için şimdi burcunuza
+                        özel taşlarınızı seçin!</p>
+                    <a href="shop.html" class="btn">Burç Taşlarınızı Keşfedin</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Watch Choice  End-->
-
+</div>
+<!-- Watch Choice  End-->

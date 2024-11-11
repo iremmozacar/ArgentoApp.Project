@@ -1,9 +1,8 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace ArgentoApp.Frontend.Mvc.Models;
-
-public class CategoryModel
+namespace ArgentoApp.Frontend.Mvc.Models.Category;
+public class CategoryViewModel
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }
