@@ -16,7 +16,7 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
         /// <returns></returns>
         public static async Task<List<CategoryViewModel>> GetActives(bool isActive = true)
         {
-            ResponseModel<List<CategoryViewModel>> responseCategoryModel = new();
+            ResponseModel<List<CategoryViewModel>> responseCategoryViewModel = new();
 
             using (HttpClient httpClient = new HttpClient())
             {
@@ -27,13 +27,13 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                    responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
+                    responseCategoryViewModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
                 }
             }
 
             // Null kontrolü ekleyerek listeyi oluşturuyoruz
-            List<CategoryViewModel> responseCategoryList = (responseCategoryModel != null && responseCategoryModel.IsSucceeded)
-                ? responseCategoryModel.Data
+            List<CategoryViewModel> responseCategoryList = (responseCategoryViewModel != null && responseCategoryViewModel.IsSucceeded)
+                ? responseCategoryViewModel.Data
                 : new List<CategoryViewModel>();
 
             return responseCategoryList;
@@ -41,7 +41,7 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
 
         public static async Task<List<CategoryViewModel>> GetAllAsync()
         {
-            ResponseModel<List<CategoryViewModel>> responseCategoryModel = new();
+            ResponseModel<List<CategoryViewModel>> responseCategoryViewModel = new();
 
             using (HttpClient httpClient = new HttpClient())
             {
@@ -50,13 +50,13 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                    responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
+                    responseCategoryViewModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
                 }
             }
 
             // Null kontrolü ekleyerek listeyi oluşturuyoruz
-            List<CategoryViewModel> responseCategoryList = (responseCategoryModel != null && responseCategoryModel.IsSucceeded)
-                ? responseCategoryModel.Data
+            List<CategoryViewModel> responseCategoryList = (responseCategoryViewModel != null && responseCategoryViewModel.IsSucceeded)
+                ? responseCategoryViewModel.Data
                 : new List<CategoryViewModel>();
 
             return responseCategoryList;

@@ -17,7 +17,7 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
         /// <returns>Ürün model listesini döndürür.</returns>
         public static async Task<List<ProductViewModel>> GetHomesAsync(bool isHome = true)
         {
-            ResponseModel<List<ProductViewModel>> responseProductModel = null;
+            ResponseModel<List<ProductViewModel>> responseProductViewModel = null;
 
             using (HttpClient httpClient = new HttpClient())
             {
@@ -28,12 +28,12 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                    responseProductModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductViewModel>>>(contentResponse);
+                    responseProductViewModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductViewModel>>>(contentResponse);
                 }
             }
 
-            List<ProductViewModel> responseProductList = (responseProductModel != null && responseProductModel.IsSucceeded)
-                ? responseProductModel.Data
+            List<ProductViewModel> responseProductList = (responseProductViewModel != null && responseProductViewModel.IsSucceeded)
+                ? responseProductViewModel.Data
                 : new List<ProductViewModel>();
 
             return responseProductList;

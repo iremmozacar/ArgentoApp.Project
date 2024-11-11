@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using ArgentoApp.Frontend.Mvc.Models;
 using Newtonsoft.Json;
 using ArgentoApp.Frontend.Mvc.Repositories;
+using ArgentoApp.Frontend.Mvc.Models.Category;
+using ArgentoApp.Frontend.Mvc.Models.Product;
 
 namespace ArgentoApp.Frontend.Mvc.Controllers;
 
@@ -11,29 +13,29 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         #region Kategorileri API'dan çekiyoruz
-        ResponseModel<List<CategoryModel>> responseCategoryModel = new();
+        ResponseModel<List<CategoryViewModel>> responseCategoryViewModel = new();
         using (HttpClient httpClient = new HttpClient())
         {
             HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5000/api/Categories/GetActives/true");
             string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-            responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryModel>>>(contentResponse);
+            responseCategoryViewModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
         }
-        List<CategoryModel> responseCategoryList = (responseCategoryModel != null && responseCategoryModel.IsSucceeded)
-            ? responseCategoryModel.Data
-            : new List<CategoryModel>();
+        List<CategoryViewModel> responseCategoryList = (responseCategoryViewModel != null && responseCategoryViewModel.IsSucceeded)
+            ? responseCategoryViewModel.Data
+            : new List<CategoryViewModel>();
         #endregion
 
         #region Ürünleri API'dan çekiyoruz
-        ResponseModel<List<ProductModel>> responseProductModel = new();
+        ResponseModel<List<ProductViewModel>> responseProductViewModel = new();
         using (HttpClient httpClient = new HttpClient())
         {
             HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5000/api/Products/GetHomes/true");
             string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-            responseProductModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductModel>>>(contentResponse);
+            responseProductViewModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductViewModel>>>(contentResponse);
         }
-        List<ProductModel> responseProductList = (responseProductModel != null && responseProductModel.IsSucceeded)
-            ? responseProductModel.Data
-            : new List<ProductModel>();
+        List<ProductViewModel> responseProductList = (responseProductViewModel != null && responseProductViewModel.IsSucceeded)
+            ? responseProductViewModel.Data
+            : new List<ProductViewModel>();
         #endregion
 
         // Debug: Ürünlerin doğru şekilde çekilip çekilmediğini görmek için
@@ -43,7 +45,7 @@ public class HomeController : Controller
         }
 
         // Model oluşturma
-        ProductsCategories model = new()
+        ProductsCategoriesViewModel model = new()
         {
             CategoryList = responseCategoryList,
             ProductList = responseProductList

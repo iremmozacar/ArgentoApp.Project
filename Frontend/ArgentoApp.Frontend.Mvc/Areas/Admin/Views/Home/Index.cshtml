@@ -1,4 +1,9 @@
-﻿<p>Admin Ana Sayfa</p>>
+﻿@{
+  ViewData["PageHeader"] = "Admin Panel Anasayfa";
+  ViewData["ShowButton"] = false;
+  ViewData["ButtonTitle"] = "";
+  ViewData["ButtonLink"] = "";
+}
 
 @await Html.PartialAsync("_ContentHeaderPartial", "Admin Panel Anasayfa")
 
