@@ -14,7 +14,7 @@ public class HomeController : Controller
         ResponseModel<List<CategoryModel>> responseCategoryModel = new();
         using (HttpClient httpClient = new HttpClient())
         {
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5200/api/Categories/GetActives/true");
+            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5000/api/Categories/GetActives/true");
             string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
             responseCategoryModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryModel>>>(contentResponse);
         }
@@ -27,7 +27,7 @@ public class HomeController : Controller
         ResponseModel<List<ProductModel>> responseProductModel = new();
         using (HttpClient httpClient = new HttpClient())
         {
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5200/api/Products/GetHomes/true");
+            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5000/api/Products/GetHomes/true");
             string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
             responseProductModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductModel>>>(contentResponse);
         }
