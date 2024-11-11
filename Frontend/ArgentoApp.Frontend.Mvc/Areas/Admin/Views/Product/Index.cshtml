@@ -22,8 +22,10 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var p in Model)
+                @if (Model != null && Model.Any())
                 {
+                    foreach (var p in Model)
+                    {
                         <tr>
                             <td>@p.Id</td>
                             <td>
@@ -37,8 +39,14 @@
                                 <a class="btn btn-warning btn-sm">Detay</a>
                             </td>
                         </tr>
+                    }
                 }
-
+                else
+                {
+                    <tr>
+                        <td colspan="7">Gösterilecek ürün yok!</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

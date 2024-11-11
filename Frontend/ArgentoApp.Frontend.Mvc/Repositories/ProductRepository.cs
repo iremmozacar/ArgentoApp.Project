@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ArgentoApp.Frontend.Mvc.Models;
+using ArgentoApp.Frontend.Mvc.Models.Product;
 using Newtonsoft.Json;
 
 namespace ArgentoApp.Frontend.Mvc.Repositories
@@ -31,10 +32,31 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
                 }
             }
 
-            // Null kontrolü ekleyerek listeyi oluşturuyoruz
             List<ProductModel> responseProductList = (responseProductModel != null && responseProductModel.IsSucceeded)
                 ? responseProductModel.Data
                 : new List<ProductModel>();
+
+            return responseProductList;
+        }
+        public static async Task<List<ProductViewModel>> GetAllAsync()
+        {
+            ResponseModel<List<ProductViewModel>> responseProductViewModel = null;
+
+            using (HttpClient httpClient = new())
+            {
+                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5200/api/Products/GetAll");
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
+                    responseProductViewModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductViewModel>>>(contentResponse);
+                }
+            }
+
+            // Null kontrolü ve IsSucceeded özelliği kontrolü
+            List<ProductViewModel> responseProductList = (responseProductViewModel != null && responseProductViewModel.IsSucceeded)
+                ? responseProductViewModel.Data
+                : new List<ProductViewModel>(); // Boş liste döndür
 
             return responseProductList;
         }

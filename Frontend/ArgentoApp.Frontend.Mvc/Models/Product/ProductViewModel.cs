@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace ShopApp.Frontend.Mvc.Models.Product;
+namespace ArgentoApp.Frontend.Mvc.Models.Product;
 
 public class ProductViewModel
 {

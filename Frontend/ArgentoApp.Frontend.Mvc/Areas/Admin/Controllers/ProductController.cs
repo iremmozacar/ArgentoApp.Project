@@ -1,3 +1,5 @@
+using ArgentoApp.Frontend.Mvc.Models.Product;
+using ArgentoApp.Frontend.Mvc.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArgentoApp.Frontend.Mvc.Areas.Admin.Controllers
@@ -6,10 +8,20 @@ namespace ArgentoApp.Frontend.Mvc.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         // GET: CategoryController
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await ProductRepository.GetAllAsync();
+            return View(products);
         }
 
-    }
-}
+    
+    //   public async Task<IActionResult> Create()
+    //     {
+    //         var model = new ProductCreateViewModel
+    //         {
+    //             Categories = await CategoryRepository.GetSelectListItemsAsync()
+    //         };
+    //         return View(model);
+    //     }
+    }}
+    
