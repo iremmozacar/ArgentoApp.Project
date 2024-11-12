@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using ArgentoApp.Frontend.Mvc.Models;
 using Newtonsoft.Json;
 using ArgentoApp.Frontend.Mvc.Models.Category;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ArgentoApp.Frontend.Mvc.Repositories
 {
@@ -61,5 +62,20 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
 
             return responseCategoryList;
         }
+
+
+        public static async Task<List<SelectListItem>> GetSelectListItemsAsync()
+        {
+            var categories = await GetActives();
+            var result = categories
+                .Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                }).ToList();
+            return result;
+        }
     }
+
+
 }

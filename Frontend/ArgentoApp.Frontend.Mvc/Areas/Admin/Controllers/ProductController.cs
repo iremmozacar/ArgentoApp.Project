@@ -15,14 +15,14 @@ namespace ArgentoApp.Frontend.Mvc.Areas.Admin.Controllers
         }
 
 
-        //   public async Task<IActionResult> Create()
-        //     {
-        //         var model = new ProductCreateViewModel
-        //         {
-        //             Categories = await CategoryRepository.GetSelectListItemsAsync()
-        //         };
-        //         return View(model);
-        //     }
+          public async Task<IActionResult> Create()
+            {
+                var model = new ProductCreateViewModel
+                {
+                    Categories = await CategoryRepository.GetSelectListItemsAsync()
+                };
+                return View(model);
+            }
     }
 }
 

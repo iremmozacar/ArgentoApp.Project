@@ -1,11 +1,15 @@
-﻿@{
+﻿@model ArgentoApp.Frontend.Mvc.Models.Other.ContentDataModel
+
+@{
   ViewData["PageHeader"] = "Admin Panel Anasayfa";
   ViewData["ShowButton"] = false;
   ViewData["ButtonTitle"] = "";
   ViewData["ButtonLink"] = "";
 }
 
-@await Html.PartialAsync("_ContentHeaderPartial", "Admin Panel Anasayfa")
+<!-- _ContentHeaderPartial kısmi görünümüne ContentDataModel modelini gönderiyoruz -->
+@await Html.PartialAsync("_ContentHeaderPartial", Model)
+
 
 <!-- Main content -->
 <section class="content">

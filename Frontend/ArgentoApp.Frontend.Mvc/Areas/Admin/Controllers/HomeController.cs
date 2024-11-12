@@ -18,8 +18,8 @@ namespace ArgentoApp.Frontend.Mvc.Areas.Admin.Controllers
                 ButtonLink = "/admin/products" // Butonun yönlendireceği linki belirtiyoruz
             };
 
-            // ViewData yerine doğrudan model gönderiyoruz
-            return View(contentDataModel); // contentDataModel'i doğrudan View'a gönderiyoruz
+            // contentDataModel'i doğrudan View'a gönderiyoruz
+            return View(contentDataModel);
         }
     }
 }
