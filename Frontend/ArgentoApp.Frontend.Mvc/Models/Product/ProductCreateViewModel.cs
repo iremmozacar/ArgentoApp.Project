@@ -9,19 +9,22 @@ public class ProductCreateViewModel
 {
     [JsonPropertyName("name")]
     [Display(Name = "Ürün Adı")]
+    [Required(ErrorMessage = "Bu alan boş bırakılamaz!")]
     public string Name { get; set; }
 
     [JsonPropertyName("isActive")]
     [Display(Name = "Aktif mi?")]
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
 
     [JsonPropertyName("properties")]
     [Display(Name = "Özellikler")]
+    [Required(ErrorMessage = "Bu alan boş bırakılamaz!")]
     public string Properties { get; set; }
 
     [JsonPropertyName("price")]
     [Display(Name = "Fiyat")]
-    public decimal Price { get; set; }
+    [Required(ErrorMessage = "Bu alan boş bırakılamaz!")]
+    public decimal? Price { get; set; }
 
     [JsonPropertyName("imageUrl")]
     public string ImageUrl { get; set; }
@@ -35,6 +38,8 @@ public class ProductCreateViewModel
 
     [Display(Name = "Kategori seç")]
     public List<SelectListItem> Categories { get; set; }
+    [Display(Name = "Ürün Resmi")]
+    [Required(ErrorMessage = "Resim seçmeden ürün kaydedemezsiniz!")]
     public IFormFile Image { get; set; }
 
 }
