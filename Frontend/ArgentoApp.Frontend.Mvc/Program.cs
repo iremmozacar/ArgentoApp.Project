@@ -18,14 +18,16 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
-// Yalnızca MapAreaControllerRoute kullanarak admin alanını yönlendirin
+//localhost:5000/admin/home/index
 app.MapAreaControllerRoute(
     name: "admin",
     pattern: "Admin/{controller=Home}/{action=Index}/{id?}",
     areaName: "Admin"
 );
 
+
+//localhost:5000/Product/Create
+//localhost:5000/
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

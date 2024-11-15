@@ -44,7 +44,7 @@ public class ImageHelper : IImageHelper
         imageCreateDto.Image.CopyTo(stream);
         ImageDto imageDto = new()
         {
-            Url = Path.Combine("images", imageCreateDto.folderName ?? "General", fileName),
+            Url = Path.Combine("http://localhost:5000",_imagesFolder, imageCreateDto.folderName ?? "General", fileName),
             Name = fileName
         };
         return ResponseDto<ImageDto>.Success(imageDto, 201);

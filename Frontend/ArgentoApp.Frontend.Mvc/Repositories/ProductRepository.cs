@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using ArgentoApp.Frontend.Mvc.Extentions;
 using ArgentoApp.Frontend.Mvc.Models;
 using ArgentoApp.Frontend.Mvc.Models.Other;
 using ArgentoApp.Frontend.Mvc.Models.Product;
@@ -83,7 +85,7 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
             ResponseModel<ProductViewModel> responseProductViewModel = new();
             using (HttpClient httpClient = new())
             {
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5200/api/Products/GetById/{id}");
+                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5000/api/Products/GetById/{id}");
                 string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
                 responseProductViewModel = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(contentResponse);
             }
@@ -95,38 +97,92 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
         {
             using (HttpClient httpClient = new())
             {
-                // Prepare image upload
+                //Resim Yükleme işlemini yapıyoruz
                 using (Stream stream = model.Image.OpenReadStream())
-                using (MemoryStream memoryStream = new())
                 {
-                    await stream.CopyToAsync(memoryStream);  // Copy the stream to a MemoryStream
-                    byte[] bytes = memoryStream.ToArray();   // Convert MemoryStream to byte array
-
                     var content = new MultipartFormDataContent();
+                    byte[] bytes = stream.ToByteArray();
                     var byteContent = new ByteArrayContent(bytes);
                     byteContent.Headers.ContentType = new MediaTypeHeaderValue(model.Image.ContentType);
                     content.Add(byteContent, "Image", model.Image.FileName);
                     content.Add(new StringContent("products"), "FolderName");
-
-                    // Send the HTTP request
-                    HttpResponseMessage httpResponseMessage = await httpClient.PostAsync("http://localhost:5200/api/Images/UploadImage", content);
+                    HttpResponseMessage httpResponseMessage = await httpClient.PostAsync("http://localhost:5000/api/Images/UploadImage", content);
                     var httpResponseMessageString = await httpResponseMessage.Content.ReadAsStringAsync();
-
-                    // Deserialize the response
                     var response = JsonConvert.DeserializeObject<ResponseModel<ImageUploadModel>>(httpResponseMessageString);
-
-                    // Check response and assign URL if succeeded
-                    if (response != null && response.IsSucceeded)
+                    if (response.IsSucceeded)
                     {
                         model.ImageUrl = response.Data.Url;
-                        return true;
                     }
                     else
                     {
-                        return false;
+                        return response.IsSucceeded;
                     }
                 }
+
+                //Ürün Ekleme işlemini yapıyoruz
+                var serializeModel = JsonConvert.SerializeObject(model);
+                var stringContent = new StringContent(serializeModel, Encoding.UTF8, "application/json");
+                HttpResponseMessage httpResponseMessageProduct = await httpClient.PostAsync("http://localhost:5200/api/Products/Create", stringContent);
+                var httpResponseMessageProductString = await httpResponseMessageProduct.Content.ReadAsStringAsync();
+                var responseProduct = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(httpResponseMessageProductString);
+                return responseProduct.IsSucceeded;
+            }
+
+        }
+    
+
+
+        public static async Task<bool> UpdateAsync(ProductEditViewModel model)
+        {
+            using (HttpClient httpClient = new())
+            {
+                if (model.Image != null)
+                {
+                    //Resim Yükleme işlemini yapıyoruz
+                    using (Stream stream = model.Image.OpenReadStream())
+                    {
+                        var content = new MultipartFormDataContent();
+                        byte[] bytes = stream.ToByteArray();
+                        var byteContent = new ByteArrayContent(bytes);
+                        byteContent.Headers.ContentType = new MediaTypeHeaderValue(model.Image.ContentType);
+                        content.Add(byteContent, "Image", model.Image.FileName);
+                        content.Add(new StringContent("products"), "FolderName");
+                        HttpResponseMessage httpResponseMessage = await httpClient.PostAsync("http://localhost:5200/api/Images/UploadImage", content);
+                        var httpResponseMessageString = await httpResponseMessage.Content.ReadAsStringAsync();
+                        var response = JsonConvert.DeserializeObject<ResponseModel<ImageUploadModel>>(httpResponseMessageString);
+                        if (response.IsSucceeded)
+                        {
+                            model.ImageUrl = response.Data.Url;
+                        }
+                        else
+                        {
+                            return response.IsSucceeded;
+                        }
+                    }
+                }
+
+                //Ürün Güncelleme işlemini yapıyoruz
+                var serializeModel = JsonConvert.SerializeObject(model);
+                var stringContent = new StringContent(serializeModel, Encoding.UTF8, "application/json");
+                HttpResponseMessage httpResponseMessageProduct = await httpClient.PutAsync("http://localhost:5000/api/Products/Update", stringContent);
+                var httpResponseMessageProductString = await httpResponseMessageProduct.Content.ReadAsStringAsync();
+                var responseProduct = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(httpResponseMessageProductString);
+                return responseProduct.IsSucceeded;
+            }
+
+        }
+        public static async Task<bool> DeleteAsync(int id)
+        {
+            ResponseModel<ProductViewModel> responseProductViewModel = new();
+            using (HttpClient httpClient = new())
+            {
+                HttpResponseMessage httpResponseMessage = await httpClient.DeleteAsync($"http://localhost:5000/api/Products/Delete/{id}");
+                string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
+                responseProductViewModel = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(contentResponse);
+
+                return responseProductViewModel.IsSucceeded;
             }
         }
-}
+    }
+    
 }
