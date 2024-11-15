@@ -1,7 +1,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace ArgentoApp.Frontend.Mvc.Models;
+namespace ArgentoApp.Frontend.Mvc.Models.Response;
 
 public class ResponseModel<T>
 {

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using ArgentoApp.Frontend.Mvc.Repositories;
 using ArgentoApp.Frontend.Mvc.Models.Category;
 using ArgentoApp.Frontend.Mvc.Models.Product;
+using ArgentoApp.Frontend.Mvc.Models.Response;
 
 namespace ArgentoApp.Frontend.Mvc.Controllers;
 

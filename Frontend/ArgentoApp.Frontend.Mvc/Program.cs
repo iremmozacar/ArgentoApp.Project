@@ -15,11 +15,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
-builder.Services.AddLogging(builder =>
-{
-    builder.AddConsole();
-    builder.AddDebug();
-});
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

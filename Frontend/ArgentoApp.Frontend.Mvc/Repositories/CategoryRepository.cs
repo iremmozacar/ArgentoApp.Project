@@ -6,22 +6,53 @@ using ArgentoApp.Frontend.Mvc.Models;
 using Newtonsoft.Json;
 using ArgentoApp.Frontend.Mvc.Models.Category;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ArgentoApp.Frontend.Mvc.Models.Response;
 
 namespace ArgentoApp.Frontend.Mvc.Repositories
 {
     public static class CategoryRepository
     {
-
-        private const string BaseApiUrl = "http://localhost:5000/api/";
-        private static readonly ILogger _logger = LoggerFactory.Create(builder => builder.AddConsole())
-                                                             .CreateLogger(typeof(CategoryRepository).FullName);
-
         public static async Task<List<CategoryViewModel>> GetActives(bool isActive = true)
+        {
+            ResponseModel<List<CategoryViewModel>> responseCategoryViewModel = null;
+
+            using (HttpClient httpClient = new())
+            {
+                try
+                {
+                    HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5000/api/Categories/GetActives/{isActive}");
+
+                    if (!httpResponseMessage.IsSuccessStatusCode)
+                    {
+                        throw new Exception($"API call failed with status code: {httpResponseMessage.StatusCode}");
+                    }
+
+                    string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
+                    responseCategoryViewModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
+
+                    if (responseCategoryViewModel == null || !responseCategoryViewModel.IsSucceeded)
+                    {
+                        throw new Exception("API response is null or unsuccessful.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Hata loglama
+                    Console.WriteLine($"Error fetching active categories: {ex.Message}");
+                    // Null referans hatalarını önlemek için boş bir liste döndür
+                    return new List<CategoryViewModel>();
+                }
+            }
+
+            return responseCategoryViewModel?.Data ?? new List<CategoryViewModel>();
+        }
+
+        public static async Task<List<CategoryViewModel>> GetAllAsync()
         {
             ResponseModel<List<CategoryViewModel>> responseCategoryViewModel = new();
             using (HttpClient httpClient = new())
             {
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5000/api/Categories/GetActives/{isActive}");
+                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5000/api/Categories/GetAll");
                 string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
                 responseCategoryViewModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
             }
@@ -30,83 +61,16 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
             return responseCategoryList;
         }
 
-        public static async Task<ProductRepository.ApiResponse<List<CategoryViewModel>>> GetAllAsync()
+        public static async Task<List<SelectListItem>> GetSelectListItemsAsync()
         {
-            try
-            {
-                using (HttpClient httpClient = new())
-                {
-                    httpClient.BaseAddress = new Uri(BaseApiUrl);
-                    HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("Categories/GetAll");
-
-                    if (httpResponseMessage.IsSuccessStatusCode)
-                    {
-                        string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                        var responseCategoryViewModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
-
-                        if (responseCategoryViewModel != null && responseCategoryViewModel.IsSucceeded)
-                        {
-                            return new ProductRepository.ApiResponse<List<CategoryViewModel>>
-                            {
-                                Data = responseCategoryViewModel.Data ?? new List<CategoryViewModel>(),
-                                Error = null
-                            };
-                        }
-                    }
-                    return new ProductRepository.ApiResponse<List<CategoryViewModel>>
-                    {
-                        Data = new List<CategoryViewModel>(),
-                        Error = "API yanıt vermedi veya başarısız yanıt döndü."
-                    };
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Kategori listesi alınırken hata oluştu: {Message}", ex.Message);
-                return new ProductRepository.ApiResponse<List<CategoryViewModel>>
-                {
-                    Data = new List<CategoryViewModel>(),
-                    Error = "Kategoriler yüklenirken bir hata oluştu."
-                };
-            }
-        }
-      public static async Task<ProductRepository.ApiResponse<List<SelectListItem>>> GetSelectListItemsAsync()
-        {
-            try
-            {
-                var apiResponse = await GetAllAsync();
-
-                if (!string.IsNullOrEmpty(apiResponse.Error))
-                {
-                    return new ProductRepository.ApiResponse<List<SelectListItem>>
-                    {
-                        Data = new List<SelectListItem>(),
-                        Error = apiResponse.Error
-                    };
-                }
-
-                var selectList = apiResponse.Data.Select(x => new SelectListItem
+            var categories = await GetActives();
+            var result = categories
+                .Select(x => new SelectListItem
                 {
                     Text = x.Name,
                     Value = x.Id.ToString()
                 }).ToList();
-
-                return new ProductRepository.ApiResponse<List<SelectListItem>>
-                {
-                    Data = selectList,
-                    Error = null
-                };
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Kategori select list oluşturulurken hata oluştu: {Message}", ex.Message);
-                return new ProductRepository.ApiResponse<List<SelectListItem>>
-                {
-                    Data = new List<SelectListItem>(),
-                    Error = "Kategoriler yüklenirken bir hata oluştu."
-                };
-            }
+            return result;
         }
-
     }
 }

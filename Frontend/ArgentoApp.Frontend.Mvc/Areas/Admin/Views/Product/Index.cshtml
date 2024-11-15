@@ -1,9 +1,9 @@
 ﻿@model List<ArgentoApp.Frontend.Mvc.Models.Product.ProductViewModel>
 @{
-    ViewData["PageHeader"] = "Ürünler Anasayfa";
-    ViewData["ShowButton"] = true;
-    ViewData["ButtonTitle"] = "Ürün Ekle";
-    ViewData["ButtonLink"] = "/admin/product/create";
+ViewData["PageHeader"] = "Ürünler Anasayfa";
+ViewData["ShowButton"] = true;
+ViewData["ButtonTitle"] = "Ürün Ekle";
+ViewData["ButtonLink"] = "/admin/product/create";
 }
 
 
@@ -31,8 +31,24 @@
                         </td>
                         <td>@p.Name</td>
                         <td>@($"{p.Price:C0}")</td>
-                        <td>@p.IsActive</td>
-                        <td>@p.IsHome</td>
+                        <td>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input asp-for="@p.IsActive" type="checkbox" class="custom-control-input"
+                                        id="isActive-@p.Id" onchange="changeIsActive('@p.Id')">
+                                    <label class="custom-control-label" for="isActive-@p.Id"></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input asp-for="@p.IsHome" type="checkbox" class="custom-control-input"
+                                        id="isHome-@p.Id" onchange="changeIsHome('@p.Id')">
+                                    <label class="custom-control-label" for="isHome-@p.Id"></label>
+                                </div>
+                            </div>
+                        </td>
                         <td>
                             <a asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-id="@p.Id"
                                 class="btn btn-warning btn-sm">Detay</a>
@@ -61,4 +77,32 @@
     <script src="~/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="~/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     @await Html.PartialAsync("_DataTablesPartial")
+    <script>
+        const changeIsActive = function (productId) {
+            $.ajax({
+                url: `/admin/product/updateisactive/${productId}`,
+                type: 'GET',
+                success: function (res) {
+                    const element = `#isHome-${productId}`;
+                    $(element).attr('checked', res ? 'checked' : '')
+                },
+                error: function (err) {
+
+                },
+            });
+        }
+
+        const changeIsHome = function (productId) {
+            $.ajax({
+                url: `/admin/product/updateishome/${productId}`,
+                type: 'GET',
+                success: function (res) {
+        @* alert(res ? 'İşlem başarılı' : 'İşlem başarısız') *@
+                        },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+    </script>
 }
