@@ -1,14 +1,7 @@
 ﻿<script>
     $(function () {
-        var table = $("#my-data-table");
 
-        // Eğer daha önce bir DataTable başlatılmışsa, yok et ve tekrar başlat
-        if ($.fn.DataTable.isDataTable(table)) {
-            table.DataTable().clear().destroy();
-        }
-
-        // DataTable'ı başlat
-        table.DataTable({
+        $("#my-data-table").DataTable({
             "responsive": true,
             "lengthChange": true,
             "lengthMenu": [5, 10, 20, 50, 100],

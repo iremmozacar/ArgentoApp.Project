@@ -4,7 +4,6 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ArgentoApp.Frontend.Mvc.Models.Product;
-
 public class ProductEditViewModel
 {
     [JsonPropertyName("id")]

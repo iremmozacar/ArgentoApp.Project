@@ -1,62 +1,95 @@
 using ArgentoApp.Frontend.Mvc.Models.Product;
 using ArgentoApp.Frontend.Mvc.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ArgentoApp.Frontend.Mvc.Areas.Admin.Controllers
 {
-
-
     [Area("Admin")]
     public class ProductController : Controller
     {
+        private readonly ILogger<ProductController> _logger;
+
+        public ProductController(ILogger<ProductController> logger)
+        {
+            _logger = logger;
+        }
 
         public async Task<IActionResult> Index()
         {
-            var products = await ProductRepository.GetAllAsync();
-            return View(products);
+            try
+            {
+                var response = await ProductRepository.GetAllAsync();
+
+                if (!string.IsNullOrEmpty(response.Error))
+                {
+                    TempData["Error"] = response.Error;
+                }
+
+                return View(response.Data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ürün listesi görüntülenirken hata oluştu");
+                TempData["Error"] = "Ürünler listelenirken bir hata oluştu.";
+                return View(new List<ProductViewModel>());
+            }
         }
+
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var model = new ProductCreateViewModel
+            try
             {
-                Categories = await CategoryRepository.GetSelectListItemsAsync()
-            };
-            return View(model);
-        }
-        [HttpPost]
-        public async Task<IActionResult> Create(ProductCreateViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var isSucceeded = await ProductRepository.CreateAsync(model);
-                if (isSucceeded)
+                var response = await CategoryRepository.GetSelectListItemsAsync();
+
+                if (!string.IsNullOrEmpty(response.Error))
                 {
-                    return RedirectToAction("Index");
+                    TempData["Error"] = response.Error;
                 }
 
+                var model = new ProductCreateViewModel
+                {
+                    Categories = response.Data ?? new List<SelectListItem>()
+                };
+                return View(model);
             }
-            model.Categories = await CategoryRepository.GetSelectListItemsAsync();
-            return View(model);
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ürün oluşturma formu görüntülenirken hata oluştu");
+                TempData["Error"] = "Ürün oluşturma formu yüklenirken bir hata oluştu.";
+                return View(new ProductCreateViewModel { Categories = new List<SelectListItem>() });
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            ProductViewModel product = await ProductRepository.GetByIdAsync(id);
-            ProductEditViewModel model = new()
+            try
             {
-                Id = product.Id,
-                CategoryId = product.CategoryId,
-                ImageUrl = product.ImageUrl,
-                IsActive = product.IsActive,
-                IsHome = product.IsHome,
-                Name = product.Name,
-                Price = product.Price,
-                Properties = product.Properties,
-                Categories = await CategoryRepository.GetSelectListItemsAsync()
-            };
-            return View(model);
+                var product = await ProductRepository.GetByIdAsync(id);
+                var categoriesResponse = await CategoryRepository.GetSelectListItemsAsync();
+
+                var model = new ProductEditViewModel
+                {
+                    Id = product.Id,
+                    CategoryId = product.CategoryId,
+                    ImageUrl = product.ImageUrl,
+                    IsActive = product.IsActive,
+                    IsHome = product.IsHome,
+                    Name = product.Name,
+                    Price = product.Price,
+                    Properties = product.Properties,
+                    Categories = categoriesResponse.Data ?? new List<SelectListItem>()
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ürün düzenleme formu görüntülenirken hata oluştu: {Message}", ex.Message);
+                TempData["Error"] = "Ürün düzenleme formu yüklenirken bir hata oluştu.";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
@@ -70,21 +103,33 @@ namespace ArgentoApp.Frontend.Mvc.Areas.Admin.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            model.Categories = await CategoryRepository.GetSelectListItemsAsync();
+
+            var categoriesResponse = await CategoryRepository.GetSelectListItemsAsync();
+            model.Categories = categoriesResponse.Data ?? new List<SelectListItem>();
             return View(model);
         }
+
         public async Task<IActionResult> Delete(int id)
         {
-            var isSucceeded = await ProductRepository.DeleteAsync(id);
-            if (isSucceeded)
+            try
             {
+                var isSucceeded = await ProductRepository.DeleteAsync(id);
+                if (isSucceeded)
+                {
+                    TempData["Success"] = "Ürün başarıyla silindi.";
+                }
+                else
+                {
+                    TempData["Error"] = "Ürün silinirken bir hata oluştu.";
+                }
                 return RedirectToAction("Index");
             }
-            return View();
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ürün silinirken hata oluştu: {Message}", ex.Message);
+                TempData["Error"] = "Ürün silinirken bir hata oluştu.";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
-
-    
-
-

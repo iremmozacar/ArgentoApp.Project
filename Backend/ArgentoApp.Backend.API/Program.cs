@@ -52,14 +52,21 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
-// CORS middleware ekleyin
-app.UseCors("AllowAllOrigins");
-
-if (app.Environment.IsDevelopment())
+// API Program.cs'de CORS ayarları
+builder.Services.AddCors(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
+// Middleware'de CORS'u etkinleştirin
+app.UseCors("AllowAll");
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();
