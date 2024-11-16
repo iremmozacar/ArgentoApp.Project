@@ -20,7 +20,7 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5000/api/Categories/GetActives/{isActive}");
+                    HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5200/api/Categories/GetActives/{isActive}");
 
                     if (!httpResponseMessage.IsSuccessStatusCode)
                     {
@@ -52,7 +52,7 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
             ResponseModel<List<CategoryViewModel>> responseCategoryViewModel = new();
             using (HttpClient httpClient = new())
             {
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5000/api/Categories/GetAll");
+                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5200/api/Categories/GetAll");
                 string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
                 responseCategoryViewModel = JsonConvert.DeserializeObject<ResponseModel<List<CategoryViewModel>>>(contentResponse);
             }

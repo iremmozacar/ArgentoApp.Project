@@ -31,7 +31,7 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5000/api/Products/GetAll");
+                    HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5200/api/Products/GetAll");
 
                     if (!httpResponseMessage.IsSuccessStatusCode)
                     {
@@ -49,12 +49,13 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception
+                    // Log the exception (optional: you can log to a file or logging framework)
                     Console.WriteLine($"Error fetching products: {ex.Message}");
                     // Return an empty list to avoid null reference issues
                     return new List<ProductViewModel>();
                 }
             }
+
             return responseProductViewModel.Data ?? new List<ProductViewModel>();
         }
         public static async Task<ProductViewModel> GetByIdAsync(int id)
