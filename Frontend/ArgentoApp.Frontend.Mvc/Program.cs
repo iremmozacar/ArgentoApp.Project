@@ -37,18 +37,53 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//localhost:5000/admin/home/index
+// Admin Area Route
 app.MapAreaControllerRoute(
     name: "admin",
     pattern: "Admin/{controller=Home}/{action=Index}/{id?}",
     areaName: "Admin"
 );
 
-
-//localhost:5000/Product/Create
-//localhost:5000/
+// Default Route
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// Uygulama başlatıldığında veritabanını seed et
+SeedDatabase(app);
+
 app.Run();
+
+// SeedDatabase metodu
+static void SeedDatabase(WebApplication app)
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<AppRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+
+    context.Database.Migrate();
+
+    // Seed Roles
+    if (!roleManager.Roles.Any())
+    {
+        roleManager.CreateAsync(new AppRole { Name = "Super Admin", Description = "Sistemdeki her türlü işi yapmaya yetkili rol" }).Wait();
+        roleManager.CreateAsync(new AppRole { Name = "Admin", Description = "Sistemdeki yönetimsel işleri yapmaya yetkili rol" }).Wait();
+        roleManager.CreateAsync(new AppRole { Name = "Customer", Description = "Müşterilerin rolü" }).Wait();
+    }
+
+    // Seed Users
+    if (!userManager.Users.Any())
+    {
+        var user = new AppUser
+        {
+            UserName = "denizcoban",
+            Email = "denizcoban@example.com",
+            FirstName = "Deniz",
+            LastName = "Çoban",
+            EmailConfirmed = true
+        };
+        userManager.CreateAsync(user, "YourPassword123!").Wait();
+        userManager.AddToRoleAsync(user, "Super Admin").Wait();
+    }
+}
