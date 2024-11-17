@@ -2,23 +2,25 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ArgentoApp.Frontend.Mvc.Data;
 using ArgentoApp.Frontend.Mvc.Data.Entities;
+using AspNetCoreHero.ToastNotification;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<AppUser, AppRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
-// builder.Services.AddNotyf(config =>
-// {
-//     config.Position = NotyfPosition.TopRight;
-//     config.DurationInSeconds = 5;
-//     config.IsDismissable = true;
-// });
+builder.Services.AddNotyf(config =>
+{
+    config.Position = NotyfPosition.TopRight;
+    config.DurationInSeconds = 5;
+    config.IsDismissable = true;
+});
 
 var app = builder.Build();
 

@@ -11,174 +11,232 @@ namespace ArgentoApp.Frontend.Mvc.Repositories
 {
     public static class ProductRepository
     {
-        public static async Task<List<ProductViewModel>> GetHomesAsync(bool isHome = true)
-        {
-            ResponseModel<List<ProductViewModel>> responseProductViewModel = new();
-            using (HttpClient httpClient = new())
-            {
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5000/api/Products/GetHomes/{isHome}");
-                string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                responseProductViewModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductViewModel>>>(contentResponse);
-            }
-            List<ProductViewModel> responseProductList = responseProductViewModel.IsSucceeded ?
-                        responseProductViewModel.Data : [];
-            return responseProductList;
-        }
+        private const string BaseUrl = "http://localhost:5000/api/Products";
+
+        // Tüm ürünleri getirir
         public static async Task<List<ProductViewModel>> GetAllAsync()
         {
-            ResponseModel<List<ProductViewModel>> responseProductViewModel = new();
             using (HttpClient httpClient = new())
             {
                 try
                 {
-                    HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("http://localhost:5200/api/Products/GetAll");
+                    HttpResponseMessage response = await httpClient.GetAsync($"{BaseUrl}/GetAll");
+                    response.EnsureSuccessStatusCode();
 
-                    if (!httpResponseMessage.IsSuccessStatusCode)
-                    {
-                        throw new Exception($"API call failed with status code: {httpResponseMessage.StatusCode}");
-                    }
-
-                    string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-
-                    responseProductViewModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductViewModel>>>(contentResponse);
-
-                    if (responseProductViewModel == null || !responseProductViewModel.IsSucceeded)
-                    {
-                        throw new Exception("API response is null or unsuccessful.");
-                    }
+                    string content = await response.Content.ReadAsStringAsync();
+                    var responseModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductViewModel>>>(content);
+                    return responseModel?.Data ?? new List<ProductViewModel>();
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception (optional: you can log to a file or logging framework)
                     Console.WriteLine($"Error fetching products: {ex.Message}");
-                    // Return an empty list to avoid null reference issues
                     return new List<ProductViewModel>();
                 }
             }
-
-            return responseProductViewModel.Data ?? new List<ProductViewModel>();
         }
-        public static async Task<ProductViewModel> GetByIdAsync(int id)
+
+        // Ana sayfa ürünlerini getirir
+        public static async Task<List<ProductViewModel>> GetHomesAsync(bool isHome = true)
         {
-            ResponseModel<ProductViewModel> responseProductViewModel = new();
             using (HttpClient httpClient = new())
             {
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5000/api/Products/GetById/{id}");
-                string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                responseProductViewModel = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(contentResponse);
+                try
+                {
+                    HttpResponseMessage response = await httpClient.GetAsync($"{BaseUrl}/GetHomes/{isHome}");
+                    response.EnsureSuccessStatusCode();
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    var responseModel = JsonConvert.DeserializeObject<ResponseModel<List<ProductViewModel>>>(content);
+                    return responseModel?.Data ?? new List<ProductViewModel>();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error fetching home products: {ex.Message}");
+                    return new List<ProductViewModel>();
+                }
             }
-            ProductViewModel responseProduct = responseProductViewModel.IsSucceeded ?
-                        responseProductViewModel.Data : null;
-            return responseProduct;
         }
+
+        // ID'ye göre ürün getirir
+        public static async Task<ProductViewModel> GetByIdAsync(int id)
+        {
+            using (HttpClient httpClient = new())
+            {
+                try
+                {
+                    HttpResponseMessage response = await httpClient.GetAsync($"{BaseUrl}/GetById/{id}");
+                    response.EnsureSuccessStatusCode();
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    var responseModel = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(content);
+                    return responseModel?.Data;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error fetching product by ID: {ex.Message}");
+                    return null;
+                }
+            }
+        }
+
+        // Yeni ürün oluşturur
         public static async Task<bool> CreateAsync(ProductCreateViewModel model)
         {
             using (HttpClient httpClient = new())
             {
-                //Resim Yükleme işlemini yapıyoruz
-                using (Stream stream = model.Image.OpenReadStream())
+                try
                 {
-                    var content = new MultipartFormDataContent();
-                    byte[] bytes = stream.ToByteArray();
-                    var byteContent = new ByteArrayContent(bytes);
-                    byteContent.Headers.ContentType = new MediaTypeHeaderValue(model.Image.ContentType);
-                    content.Add(byteContent, "Image", model.Image.FileName);
-                    content.Add(new StringContent("products"), "FolderName");
-                    HttpResponseMessage httpResponseMessage = await httpClient.PostAsync("http://localhost:5000/api/Images/UploadImage", content);
-                    var httpResponseMessageString = await httpResponseMessage.Content.ReadAsStringAsync();
-                    var response = JsonConvert.DeserializeObject<ResponseModel<ImageUploadModel>>(httpResponseMessageString);
-                    if (response.IsSucceeded)
+                    if (model.Image != null)
                     {
-                        model.ImageUrl = response.Data.Url;
+                        using (Stream stream = model.Image.OpenReadStream())
+                        {
+                            var content = new MultipartFormDataContent();
+                            var byteContent = new ByteArrayContent(stream.ToByteArray());
+                            byteContent.Headers.ContentType = new MediaTypeHeaderValue(model.Image.ContentType);
+                            content.Add(byteContent, "Image", model.Image.FileName);
+                            content.Add(new StringContent("products"), "FolderName");
+
+                            HttpResponseMessage imageResponse = await httpClient.PostAsync("http://localhost:5000/api/Images/UploadImage", content);
+                            var imageResponseString = await imageResponse.Content.ReadAsStringAsync();
+                            var imageUploadResponse = JsonConvert.DeserializeObject<ResponseModel<ImageUploadModel>>(imageResponseString);
+
+                            if (imageUploadResponse?.IsSucceeded == true)
+                            {
+                                model.ImageUrl = imageUploadResponse.Data.Url;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
                     }
-                    else
-                    {
-                        return response.IsSucceeded;
-                    }
+
+                    var stringContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await httpClient.PostAsync($"{BaseUrl}/Create", stringContent);
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    var createResponse = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(responseString);
+
+                    return createResponse?.IsSucceeded ?? false;
                 }
-
-                //Ürün Ekleme işlemini yapıyoruz
-                var serializeModel = JsonConvert.SerializeObject(model);
-                var stringContent = new StringContent(serializeModel, Encoding.UTF8, "application/json");
-                HttpResponseMessage httpResponseMessageProduct = await httpClient.PostAsync("http://localhost:5000/api/Products/Create", stringContent);
-                var httpResponseMessageProductString = await httpResponseMessageProduct.Content.ReadAsStringAsync();
-                var responseProduct = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(httpResponseMessageProductString);
-                return responseProduct.IsSucceeded;
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error creating product: {ex.Message}");
+                    return false;
+                }
             }
-
         }
+
+        // Ürün günceller
         public static async Task<bool> UpdateAsync(ProductEditViewModel model)
         {
             using (HttpClient httpClient = new())
             {
-                if (model.Image != null)
+                try
                 {
-                    //Resim Yükleme işlemini yapıyoruz
-                    using (Stream stream = model.Image.OpenReadStream())
+                    if (model.Image != null)
                     {
-                        var content = new MultipartFormDataContent();
-                        byte[] bytes = stream.ToByteArray();
-                        var byteContent = new ByteArrayContent(bytes);
-                        byteContent.Headers.ContentType = new MediaTypeHeaderValue(model.Image.ContentType);
-                        content.Add(byteContent, "Image", model.Image.FileName);
-                        content.Add(new StringContent("products"), "FolderName");
-                        HttpResponseMessage httpResponseMessage = await httpClient.PostAsync("http://localhost:5000/api/Images/UploadImage", content);
-                        var httpResponseMessageString = await httpResponseMessage.Content.ReadAsStringAsync();
-                        var response = JsonConvert.DeserializeObject<ResponseModel<ImageUploadModel>>(httpResponseMessageString);
-                        if (response.IsSucceeded)
+                        using (Stream stream = model.Image.OpenReadStream())
                         {
-                            model.ImageUrl = response.Data.Url;
-                        }
-                        else
-                        {
-                            return response.IsSucceeded;
+                            var content = new MultipartFormDataContent();
+                            var byteContent = new ByteArrayContent(stream.ToByteArray());
+                            byteContent.Headers.ContentType = new MediaTypeHeaderValue(model.Image.ContentType);
+                            content.Add(byteContent, "Image", model.Image.FileName);
+                            content.Add(new StringContent("products"), "FolderName");
+
+                            HttpResponseMessage imageResponse = await httpClient.PostAsync("http://localhost:5000/api/Images/UploadImage", content);
+                            var imageResponseString = await imageResponse.Content.ReadAsStringAsync();
+                            var imageUploadResponse = JsonConvert.DeserializeObject<ResponseModel<ImageUploadModel>>(imageResponseString);
+
+                            if (imageUploadResponse?.IsSucceeded == true)
+                            {
+                                model.ImageUrl = imageUploadResponse.Data.Url;
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                     }
+
+                    var stringContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await httpClient.PutAsync($"{BaseUrl}/Update", stringContent);
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    var updateResponse = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(responseString);
+
+                    return updateResponse?.IsSucceeded ?? false;
                 }
-
-                //Ürün Güncelleme işlemini yapıyoruz
-                var serializeModel = JsonConvert.SerializeObject(model);
-                var stringContent = new StringContent(serializeModel, Encoding.UTF8, "application/json");
-                HttpResponseMessage httpResponseMessageProduct = await httpClient.PutAsync("http://localhost:5000/api/Products/Update", stringContent);
-                var httpResponseMessageProductString = await httpResponseMessageProduct.Content.ReadAsStringAsync();
-                var responseProduct = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(httpResponseMessageProductString);
-                return responseProduct.IsSucceeded;
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error updating product: {ex.Message}");
+                    return false;
+                }
             }
-
         }
+
+        // Ürün siler
         public static async Task<bool> DeleteAsync(int id)
         {
-            ResponseModel<ProductViewModel> responseProductViewModel = new();
             using (HttpClient httpClient = new())
             {
-                HttpResponseMessage httpResponseMessage = await httpClient.DeleteAsync($"http://localhost:5000/api/Products/Delete/{id}");
-                string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                responseProductViewModel = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(contentResponse);
+                try
+                {
+                    HttpResponseMessage response = await httpClient.DeleteAsync($"{BaseUrl}/Delete/{id}");
+                    response.EnsureSuccessStatusCode();
 
-                return responseProductViewModel.IsSucceeded;
+                    string content = await response.Content.ReadAsStringAsync();
+                    var responseModel = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(content);
+
+                    return responseModel?.IsSucceeded ?? false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error deleting product: {ex.Message}");
+                    return false;
+                }
             }
         }
+
+        // Ürünün aktif durumunu günceller
         public static async Task<ProductViewModel> UpdateIsActiveAsync(int id)
         {
-            ResponseModel<bool?> responseModel = new();
             using (HttpClient httpClient = new())
             {
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5000/api/Products/UpdateIsActive/{id}");
-                string contentResponse = await httpResponseMessage.Content?.ReadAsStringAsync();
-                responseModel = JsonConvert.DeserializeObject<ResponseModel<bool?>>(contentResponse);
-                var product = await GetByIdAsync(id);
-                return product;
+                try
+                {
+                    HttpResponseMessage response = await httpClient.GetAsync($"{BaseUrl}/UpdateIsActive/{id}");
+                    response.EnsureSuccessStatusCode();
+
+                    var product = await GetByIdAsync(id);
+                    return product;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error updating product active state: {ex.Message}");
+                    return null;
+                }
             }
         }
+
+        // Ürünün ana sayfa durumunu günceller
         public static async Task<bool> UpdateIsHomeAsync(int id)
         {
-            ResponseModel<bool?> responseModel = new();
             using (HttpClient httpClient = new())
             {
-                HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5000/api/Products/UpdateIsHome/{id}");
-                string contentResponse = await httpResponseMessage.Content?.ReadAsStringAsync();
-                responseModel = JsonConvert.DeserializeObject<ResponseModel<bool?>>(contentResponse);
-                return responseModel.IsSucceeded;
+                try
+                {
+                    HttpResponseMessage response = await httpClient.GetAsync($"{BaseUrl}/UpdateIsHome/{id}");
+                    response.EnsureSuccessStatusCode();
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    var responseModel = JsonConvert.DeserializeObject<ResponseModel<bool?>>(content);
+
+                    return responseModel?.IsSucceeded ?? false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error updating product home state: {ex.Message}");
+                    return false;
+                }
             }
         }
     }

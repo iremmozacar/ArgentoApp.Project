@@ -6,6 +6,8 @@
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/ArgentoApp.Frontend.Mvc.runtimeconfig.json
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/ArgentoApp.Frontend.Mvc.dll
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/ArgentoApp.Frontend.Mvc.pdb
+/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/AspNetCoreHero.ToastNotification.Views.dll
+/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/AspNetCoreHero.ToastNotification.dll
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/Humanizer.dll
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/bin/Debug/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -143,6 +145,7 @@
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.AssemblyInfoInputs.cache
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.AssemblyInfo.cs
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.csproj.CoreCompileInputs.cache
+/Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.MvcApplicationPartsAssemblyInfo.cs
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.MvcApplicationPartsAssemblyInfo.cache
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.RazorAssemblyInfo.cache
 /Users/iremozacar/Documents/GitHub/ArgentoApp/Frontend/ArgentoApp.Frontend.Mvc/obj/Debug/net8.0/ArgentoApp.Frontend.Mvc.RazorAssemblyInfo.cs
