@@ -5,11 +5,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ArgentoApp.Frontend.Mvc.Migrations
 {
-    public partial class TestMigration : Migration
+    /// <inheritdoc />
+    public partial class InitialCreate : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // AspNetRoles tablosunu oluşturma
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -25,7 +26,6 @@ namespace ArgentoApp.Frontend.Mvc.Migrations
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
 
-            // AspNetUsers tablosunu oluşturma
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
@@ -53,7 +53,6 @@ namespace ArgentoApp.Frontend.Mvc.Migrations
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
 
-            // AspNetRoleClaims tablosunu oluşturma
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
@@ -75,7 +74,6 @@ namespace ArgentoApp.Frontend.Mvc.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            // AspNetUserClaims tablosunu oluşturma
             migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
@@ -97,7 +95,6 @@ namespace ArgentoApp.Frontend.Mvc.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            // AspNetUserLogins tablosunu oluşturma
             migrationBuilder.CreateTable(
                 name: "AspNetUserLogins",
                 columns: table => new
@@ -118,7 +115,6 @@ namespace ArgentoApp.Frontend.Mvc.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            // AspNetUserRoles tablosunu oluşturma
             migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
                 columns: table => new
@@ -143,7 +139,6 @@ namespace ArgentoApp.Frontend.Mvc.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            // AspNetUserTokens tablosunu oluşturma
             migrationBuilder.CreateTable(
                 name: "AspNetUserTokens",
                 columns: table => new
@@ -164,7 +159,6 @@ namespace ArgentoApp.Frontend.Mvc.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            // Indeksler oluşturma
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -203,15 +197,29 @@ namespace ArgentoApp.Frontend.Mvc.Migrations
                 unique: true);
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(name: "AspNetRoleClaims");
-            migrationBuilder.DropTable(name: "AspNetUserClaims");
-            migrationBuilder.DropTable(name: "AspNetUserLogins");
-            migrationBuilder.DropTable(name: "AspNetUserRoles");
-            migrationBuilder.DropTable(name: "AspNetUserTokens");
-            migrationBuilder.DropTable(name: "AspNetRoles");
-            migrationBuilder.DropTable(name: "AspNetUsers");
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

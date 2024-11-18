@@ -10,39 +10,41 @@ public static class ModelBuilderExtensions
     public static void SeedIdentityData(this ModelBuilder modelBuilder)
     {
         #region Örnek Rol Bilgileri Tanımlanıyor
-        List<AppRole> roles = new List<AppRole>
-        {
-            new AppRole { Id = "1", Name = "Super Admin", Description = "Sistemdeki her türlü işi yapmaya yetkili rol", NormalizedName = "SUPER ADMIN" },
-            new AppRole { Id = "2", Name = "Admin", Description = "Sistemdeki yönetimsel işleri yapmaya yetkili rol", NormalizedName = "ADMIN" },
-            new AppRole { Id = "3", Name = "Customer", Description = "Müşterilerin rolü", NormalizedName = "CUSTOMER" }
-        };
+        List<AppRole> roles = [
+            new() { Name="Super Admin", Description="Sistemdeki her türlü işi yapmaya yetkili rol", NormalizedName="SUPER ADMIN"},
+            new() { Name="Admin", Description="Sistemdeki yönetimsel işleri yapmaya yetkili rol", NormalizedName="ADMIN"},
+            new() { Name="Customer", Description="Müşterilerin rolü", NormalizedName="CUSTOMER"}
+        ];
         modelBuilder.Entity<AppRole>().HasData(roles);
         #endregion
 
         #region Örnek Kullanıcı Bilgileri Tanımlanıyor
-        List<AppUser> users = new List<AppUser>
-        {
-            new AppUser { Id = "1", FirstName = "Deniz", LastName = "Çoban", Email = "denizcoban@example.com", UserName = "denizcoban", EmailConfirmed = true, NormalizedEmail = "DENIZCOBAN@EXAMPLE.COM", NormalizedUserName = "DENIZCOBAN" },
-            new AppUser { Id = "2", FirstName = "Seden", LastName = "Kaban", Email = "sedenkaban@example.com", UserName = "sedenkaban", EmailConfirmed = true, NormalizedEmail = "SEDENKABAN@EXAMPLE.COM", NormalizedUserName = "SEDENKABAN" },
-            new AppUser { Id = "3", FirstName = "Kemal", LastName = "Candan", Email = "kemalcandan@example.com", UserName = "kemalcandan", EmailConfirmed = true, NormalizedEmail = "KEMALCANDAN@EXAMPLE.COM", NormalizedUserName = "KEMALCANDAN" },
-            new AppUser { Id = "4", FirstName = "Berfu", LastName = "Keloğlan", Email = "berfukeloglan@example.com", UserName = "berfukeloglan", EmailConfirmed = true, NormalizedEmail = "BERFUKELOGLAN@EXAMPLE.COM", NormalizedUserName = "BERFUKELOGLAN" },
-            new AppUser { Id = "5", FirstName = "Can", LastName = "Tan", Email = "cantan@example.com", UserName = "cantan", EmailConfirmed = true, NormalizedEmail = "CANTAN@EXAMPLE.COM", NormalizedUserName = "CANTAN" },
-            new AppUser { Id = "6", FirstName = "Müge", LastName = "Por", Email = "mugepor@example.com", UserName = "mugepor", EmailConfirmed = true, NormalizedEmail = "MUGEPOR@EXAMPLE.COM", NormalizedUserName = "MUGEPOR" }
-        };
+        List<AppUser> users = [
+            new() { FirstName="Deniz", LastName="Çoban", Email="denizcoban@example.com", UserName="denizcoban", EmailConfirmed=true, NormalizedEmail="DENIZCOBAN@EXAMPLE.COM", NormalizedUserName="DENIZCOBAN"},
+
+            new() { FirstName="Seden", LastName="Kaban", Email="sedenkaban@example.com", UserName="sedenkaban", EmailConfirmed=true, NormalizedEmail="SEDENKABAN@EXAMPLE.COM", NormalizedUserName="SEDENKABAN"},
+
+            new() { FirstName="Kemal", LastName="Candan", Email="kemalcandan@example.com", UserName="kemalcandan", EmailConfirmed=true, NormalizedEmail="KEMALCANDAN@EXAMPLE.COM", NormalizedUserName="KEMALCANDAN"},
+
+            new() { FirstName="Berfu", LastName="Keloğlan", Email="berfukeloglan@example.com", UserName="berfukeloglan", EmailConfirmed=true, NormalizedEmail="BERFUKELOGLAN@EXAMPLE.COM", NormalizedUserName="BERFUKELOGLAN"},
+
+            new() { FirstName="Can", LastName="Tan", Email="cantan@example.com", UserName="cantan", EmailConfirmed=true, NormalizedEmail="CANTAN@EXAMPLE.COM", NormalizedUserName="CANTAN"},
+
+            new() { FirstName="Müge", LastName="Por", Email="mugepor@example.com", UserName="mugepor", EmailConfirmed=true, NormalizedEmail="MUGEPOR@EXAMPLE.COM", NormalizedUserName="MUGEPOR"}
+        ];
         modelBuilder.Entity<AppUser>().HasData(users);
         #endregion
 
         #region Rol Atama İşlemleri Yapılıyor
-        List<IdentityUserRole<string>> identityUserRoles = new List<IdentityUserRole<string>>
-        {
-            new IdentityUserRole<string> { RoleId = "1", UserId = "1" }, // Super Admin -> Deniz
-            new IdentityUserRole<string> { RoleId = "2", UserId = "2" }, // Admin -> Seden
-            new IdentityUserRole<string> { RoleId = "3", UserId = "3" }, // Customer -> Kemal
-            new IdentityUserRole<string> { RoleId = "3", UserId = "4" }, // Customer -> Berfu
-            new IdentityUserRole<string> { RoleId = "3", UserId = "5" }, // Customer -> Can
-            new IdentityUserRole<string> { RoleId = "3", UserId = "6" }, // Customer -> Müge
-            new IdentityUserRole<string> { RoleId = "2", UserId = "3" }  // Admin -> Kemal (Özel atama)
-        };
+        List<IdentityUserRole<string>> identityUserRoles = [
+            new IdentityUserRole<string>{ RoleId=roles[0].Id, UserId=users[0].Id},
+            new IdentityUserRole<string>{ RoleId=roles[1].Id, UserId=users[1].Id},
+            new IdentityUserRole<string>{ RoleId=roles[2].Id, UserId=users[2].Id},
+            new IdentityUserRole<string>{ RoleId=roles[2].Id, UserId=users[3].Id},
+            new IdentityUserRole<string>{ RoleId=roles[2].Id, UserId=users[4].Id},
+            new IdentityUserRole<string>{ RoleId=roles[2].Id, UserId=users[5].Id},
+            new IdentityUserRole<string>{ RoleId=roles[1].Id, UserId=users[2].Id}
+        ];
         modelBuilder.Entity<IdentityUserRole<string>>().HasData(identityUserRoles);
         #endregion
 

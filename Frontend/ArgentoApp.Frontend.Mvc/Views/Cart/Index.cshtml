@@ -1,0 +1,166 @@
+﻿@model ArgentoApp.Frontend.Mvc.Models.Cart.CartViewModel
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argento - Cart List</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- Header Start -->
+    <header>
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                        </div>
+                        <!-- Main Menu -->
+                        <nav class="main-menu d-none d-lg-block">
+                            <ul id="navigation">
+                                <li><a href="index.html">Anasayfa</a></li>
+                                <li><a href="#">Doğal Taş</a>
+                                    <ul class="submenu">
+                                        <li><a href="shop.html">Ham Kütle</a></li>
+                                        <li><a href="shop.html">Bileklik</a></li>
+                                        <li><a href="shop.html">Kolye Ucu</a></li>
+                                        <li><a href="shop.html">Yüzük</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Daha Fazla Menü -->
+                            </ul>
+                        </nav>
+                        <!-- Header Right -->
+                        <div class="header-right">
+                            <ul>
+                                <li>
+                                    <div class="nav-search search-switch"><span class="flaticon-search"></span></div>
+                                </li>
+                                <li><a href="login.html"><span class="flaticon-user"></span></a></li>
+                                <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Area -->
+        <div class="slider-area">
+            <div class="single-slider slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>Cart List</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Area -->
+        <section class="cart_area section_padding">
+            <div class="container">
+                <div class="cart_inner">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Örnek Satır -->
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <img src="assets/img/gallery/card1.png" alt="Product" class="d-flex">
+                                            <div class="media-body">
+                                                <p>Minimalistic shop for multipurpose use</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>$360.00</h5>
+                                    </td>
+                                    <td>
+                                        <div class="product_count">
+                                            <span class="input-number-decrement"><i class="ti-minus"></i></span>
+                                            <input class="input-number" type="text" value="1" min="0" max="10">
+                                            <span class="input-number-increment"><i class="ti-plus"></i></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>$720.00</h5>
+                                    </td>
+                                </tr>
+                                <!-- Daha Fazla Satır -->
+                            </tbody>
+                        </table>
+                        <div class="checkout_btn_inner float-right">
+                            <a class="btn_1" href="#">Continue Shopping</a>
+                            <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                        <div class="footer-logo">
+                            <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt="Logo"></a>
+                        </div>
+                        <p>Argento markasıyla alışveriş keyfini yaşayın.</p>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                        <h4>Hızlı Bağlantılar</h4>
+                        <ul>
+                            <li><a href="#">Hakkımızda</a></li>
+                            <li><a href="#">İletişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Dependencies -->
+    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

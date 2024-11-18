@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArgentoApp.Frontend.Mvc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241117201518_UpdateSeedDataMigration")]
-    partial class UpdateSeedDataMigration
+    [Migration("20241118125027_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

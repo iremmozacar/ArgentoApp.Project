@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArgentoApp.Frontend.Mvc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241117200657_TestMigration")]
-    partial class TestMigration
+    [Migration("20241118125656_SeedRolesAndUsers")]
+    partial class SeedRolesAndUsers
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
