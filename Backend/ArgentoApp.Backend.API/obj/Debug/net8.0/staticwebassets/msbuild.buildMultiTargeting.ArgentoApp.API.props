@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/ArgentoApp.Backend.API.props" />
-</Project>
