@@ -1,13 +1,13 @@
 ﻿@model ArgentoApp.Frontend.Mvc.Models.Cart.CartViewModel
 
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="tr">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Argento - Cart List</title>
+    <title>Argento - Sepet</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
 
     <!-- CSS Dependencies -->
@@ -74,7 +74,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>Cart List</h2>
+                                <h2>Sepet Listesi</h2>
                             </div>
                         </div>
                     </div>
@@ -90,43 +90,82 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
+                                    <th>Ürün</th>
+                                    <th>Birim Fiyat</th>
+                                    <th>Vergi</th>
+                                    <th>Adet</th>
+                                    <th>Toplam</th>
+                                    <th>Sil</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Örnek Satır -->
-                                <tr>
-                                    <td>
-                                        <div class="media">
-                                            <img src="assets/img/gallery/card1.png" alt="Product" class="d-flex">
-                                            <div class="media-body">
-                                                <p>Minimalistic shop for multipurpose use</p>
+                                @foreach (var cartItem in Model.CartItems)
+                                {
+                                    var tax = cartItem.Product.Price * 0.18m; // Decimal uyumlu
+                                    var total = (cartItem.Product.Price + tax) * cartItem.Quantity;
+                                    <tr>
+                                        <td>
+                                            <div class="media">
+                                                <img src="@cartItem.Product.ImageUrl" alt="Ürün" class="d-flex">
+                                                <div class="media-body">
+                                                    <p>@cartItem.Product.Name</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <h5>$360.00</h5>
-                                    </td>
-                                    <td>
-                                        <div class="product_count">
-                                            <span class="input-number-decrement"><i class="ti-minus"></i></span>
-                                            <input class="input-number" type="text" value="1" min="0" max="10">
-                                            <span class="input-number-increment"><i class="ti-plus"></i></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <h5>$720.00</h5>
-                                    </td>
-                                </tr>
-                                <!-- Daha Fazla Satır -->
+                                        </td>
+                                        <td>
+                                            <h5>@($"{cartItem.Product.Price:C0}")</h5>
+                                        </td>
+                                        <td>
+                                            <h5>@($"{tax:C0}")</h5>
+                                        </td>
+                                        <td>
+                                            <div class="product_count">
+                                                <span class="input-number-decrement"
+                                                    onclick="changeQuantity(@cartItem.Id, 'decrease')">
+                                                    <i class="ti-minus"></i>
+                                                </span>
+                                                <input class="input-number" id="quantity-@cartItem.Id" type="text"
+                                                    value="@cartItem.Quantity" min="1">
+                                                <span class="input-number-increment"
+                                                    onclick="changeQuantity(@cartItem.Id, 'increase')">
+                                                    <i class="ti-plus"></i>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5>@($"{total:C0}")</h5>
+                                        </td>
+                                        <td>
+                                            <a asp-action="DeleteCartItem" asp-route-id="@cartItem.Id"
+                                                class="btn btn-md rounded-circle bg-light border">
+                                                <i class="fa fa-times text-danger"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
+
+                        <!-- Totals Section -->
+                        <div class="totals">
+                            @{
+                                var subTotal = Model.GetTotalPrice();
+                                var totalTax = subTotal * 0.18m;
+                                var shippingLimit = 20000m;
+                                var shippingPrice = subTotal > shippingLimit ? 0 : 1000m;
+                                var grandTotal = subTotal + totalTax + shippingPrice;
+                            }
+                            <ul>
+                                <li>Ara Toplam: <span>@($"{subTotal:C0}")</span></li>
+                                <li>Toplam Vergi: <span>@($"{totalTax:C0}")</span></li>
+                                <li>Kargo: <span>@($"{shippingPrice:C0}")</span></li>
+                                <li>Genel Toplam: <span>@($"{grandTotal:C0}")</span></li>
+                            </ul>
+                        </div>
+
                         <div class="checkout_btn_inner float-right">
-                            <a class="btn_1" href="#">Continue Shopping</a>
-                            <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+                            <a class="btn_1" href="#">Alışverişe Devam Et</a>
+                            <a class="btn_1 checkout_btn_1" href="#">Ödeme Yap</a>
                         </div>
                     </div>
                 </div>
@@ -161,6 +200,38 @@
     <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        function changeQuantity(itemId, action) {
+            const input = document.getElementById(`quantity-${itemId}`);
+            let currentQuantity = parseInt(input.value) || 1;
+
+            if (action === 'increase') {
+                input.value = currentQuantity + 1;
+            } else if (action === 'decrease' && currentQuantity > 1) {
+                input.value = currentQuantity - 1;
+            }
+
+            $.ajax({
+                url: '/cart/changequantity',
+                type: 'POST',
+                data: {
+                    cartItemId: itemId,
+                    quantity: input.value
+                },
+                success: function (response) {
+                    document.getElementById(`quantity-${itemId}`).value = response.quantity;
+                    document.getElementById(`cart-item-total-${itemId}`).innerText = response.itemTotal;
+                    document.getElementById('cart-sub-total').innerText = response.subTotal;
+                    document.getElementById('cart-total-tax').innerText = response.totalTax;
+                    document.getElementById('cart-grand-total').innerText = response.grandTotal;
+                },
+               
+                    error: function () {
+                    alert('Miktar güncellenirken bir hata oluştu.');
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

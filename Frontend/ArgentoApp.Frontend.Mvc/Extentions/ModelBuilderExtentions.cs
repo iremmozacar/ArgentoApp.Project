@@ -20,17 +20,17 @@ public static class ModelBuilderExtensions
 
         #region Örnek Kullanıcı Bilgileri Tanımlanıyor
         List<AppUser> users = [
-            new() { FirstName="Deniz", LastName="Çoban", Email="denizcoban@example.com", UserName="denizcoban", EmailConfirmed=true, NormalizedEmail="DENIZCOBAN@EXAMPLE.COM", NormalizedUserName="DENIZCOBAN"},
+            new() { Id="1", FirstName="Deniz", LastName="Çoban", Email="denizcoban@example.com", UserName="denizcoban", EmailConfirmed=true, NormalizedEmail="DENIZCOBAN@EXAMPLE.COM", NormalizedUserName="DENIZCOBAN"},
 
-            new() { FirstName="Seden", LastName="Kaban", Email="sedenkaban@example.com", UserName="sedenkaban", EmailConfirmed=true, NormalizedEmail="SEDENKABAN@EXAMPLE.COM", NormalizedUserName="SEDENKABAN"},
+            new() {Id="2", FirstName="Seden", LastName="Kaban", Email="sedenkaban@example.com", UserName="sedenkaban", EmailConfirmed=true, NormalizedEmail="SEDENKABAN@EXAMPLE.COM", NormalizedUserName="SEDENKABAN"},
 
-            new() { FirstName="Kemal", LastName="Candan", Email="kemalcandan@example.com", UserName="kemalcandan", EmailConfirmed=true, NormalizedEmail="KEMALCANDAN@EXAMPLE.COM", NormalizedUserName="KEMALCANDAN"},
+            new() {Id="3", FirstName="Kemal", LastName="Candan", Email="kemalcandan@example.com", UserName="kemalcandan", EmailConfirmed=true, NormalizedEmail="KEMALCANDAN@EXAMPLE.COM", NormalizedUserName="KEMALCANDAN"},
 
-            new() { FirstName="Berfu", LastName="Keloğlan", Email="berfukeloglan@example.com", UserName="berfukeloglan", EmailConfirmed=true, NormalizedEmail="BERFUKELOGLAN@EXAMPLE.COM", NormalizedUserName="BERFUKELOGLAN"},
+            new() {Id="4", FirstName="Berfu", LastName="Keloğlan", Email="berfukeloglan@example.com", UserName="berfukeloglan", EmailConfirmed=true, NormalizedEmail="BERFUKELOGLAN@EXAMPLE.COM", NormalizedUserName="BERFUKELOGLAN"},
 
-            new() { FirstName="Can", LastName="Tan", Email="cantan@example.com", UserName="cantan", EmailConfirmed=true, NormalizedEmail="CANTAN@EXAMPLE.COM", NormalizedUserName="CANTAN"},
+            new() {Id="5", FirstName="Can", LastName="Tan", Email="cantan@example.com", UserName="cantan", EmailConfirmed=true, NormalizedEmail="CANTAN@EXAMPLE.COM", NormalizedUserName="CANTAN"},
 
-            new() { FirstName="Müge", LastName="Por", Email="mugepor@example.com", UserName="mugepor", EmailConfirmed=true, NormalizedEmail="MUGEPOR@EXAMPLE.COM", NormalizedUserName="MUGEPOR"}
+            new() {Id="6", FirstName="Müge", LastName="Por", Email="mugepor@example.com", UserName="mugepor", EmailConfirmed=true, NormalizedEmail="MUGEPOR@EXAMPLE.COM", NormalizedUserName="MUGEPOR"}
         ];
         modelBuilder.Entity<AppUser>().HasData(users);
         #endregion

@@ -15,7 +15,7 @@ public class CartRepository
         {
             var serializeModel = JsonConvert.SerializeObject(model);
             var stringContent = new StringContent(serializeModel, Encoding.UTF8, "application/json");
-            HttpResponseMessage httpResponseMessage = await httpClient.PostAsync("http://localhost:5200/api/carts/addtocart", stringContent);
+            HttpResponseMessage httpResponseMessage = await httpClient.PostAsync("http://localhost:5000/api/carts/addtocart", stringContent);
             var httpResponseMessageString = await httpResponseMessage.Content.ReadAsStringAsync();
             var responseProduct = JsonConvert.DeserializeObject<ResponseModel<ProductViewModel>>(httpResponseMessageString);
             return responseProduct.IsSucceeded;
@@ -26,7 +26,7 @@ public class CartRepository
         ResponseModel<CartViewModel> responseViewModel = new();
         using (HttpClient httpClient = new())
         {
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5200/api/Carts/GetCart/{userId}");
+            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5000/api/Carts/GetCart/{userId}");
             string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
             responseViewModel = JsonConvert.DeserializeObject<ResponseModel<CartViewModel>>(contentResponse);
         }

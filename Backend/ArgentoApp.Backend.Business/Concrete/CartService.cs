@@ -51,12 +51,22 @@ public class CartService : ICartService
     }
     public async Task<ResponseDto<CartDto>> GetCartByUserIdAsync(string userId)
     {
-        var cart = await _cartRepository.GetAsync(x => x.UserId == userId, source => source.Include(x => x.CartItems));
+        // Sepeti kullanıcı ID'sine göre alıyoruz ve ilişkili verilerle birlikte yüklüyoruz.
+        var cart = await _cartRepository.GetAsync(
+            x => x.UserId == userId,
+            source => source.Include(x => x.CartItems).ThenInclude(y => y.Product)
+        );
+
+        // Eğer sepet bulunamadıysa, hata mesajı döndür.
         if (cart == null)
         {
-            return ResponseDto<CartDto>.Fail("Kullanıcıya ait bi sepet bulunamadı!", 404);
+            return ResponseDto<CartDto>.Fail("Kullanıcıya ait bir sepet bulunamadı!", 404);
         }
+
+        // Sepeti DTO'ya dönüştür.
         var cartDto = _mapper.Map<CartDto>(cart);
+
+        // Başarılı yanıt olarak döndür.
         return ResponseDto<CartDto>.Success(cartDto, 200);
     }
     public async Task<ResponseDto<NoContent>> InitilaizeCartAsync(string userId)
