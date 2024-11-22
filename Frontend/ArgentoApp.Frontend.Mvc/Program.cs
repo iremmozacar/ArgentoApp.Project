@@ -29,8 +29,13 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
+
+// Remove ambiguous HTTPS redirection
 app.UseHttpsRedirection();
 
+// Add port configuration
+builder.WebHost.UseUrls("http://localhost:5000", "https://localhost:5001");
 app.UseStaticFiles();
 
 app.UseRouting();
