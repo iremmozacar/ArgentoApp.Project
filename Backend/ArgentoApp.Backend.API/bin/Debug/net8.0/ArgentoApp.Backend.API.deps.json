@@ -744,7 +744,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1"
         },
         "runtime": {
-          "ArgentoApp.Backend.Business.dll": {}
+          "ArgentoApp.Backend.Business.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ArgentoApp.Backend.Data/1.0.0": {
@@ -754,7 +757,10 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.11"
         },
         "runtime": {
-          "ArgentoApp.Backend.Data.dll": {}
+          "ArgentoApp.Backend.Data.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ArgentoApp.Backend.Entity/1.0.0": {
@@ -762,12 +768,18 @@
           "ArgentoApp.Backend.Shared": "1.0.0"
         },
         "runtime": {
-          "ArgentoApp.Backend.Entity.dll": {}
+          "ArgentoApp.Backend.Entity.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ArgentoApp.Backend.Shared/1.0.0": {
         "runtime": {
-          "ArgentoApp.Backend.Shared.dll": {}
+          "ArgentoApp.Backend.Shared.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

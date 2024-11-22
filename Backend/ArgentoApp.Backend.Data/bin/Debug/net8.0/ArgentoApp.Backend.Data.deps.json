@@ -314,12 +314,18 @@
           "ArgentoApp.Backend.Shared": "1.0.0"
         },
         "runtime": {
-          "ArgentoApp.Backend.Entity.dll": {}
+          "ArgentoApp.Backend.Entity.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ArgentoApp.Backend.Shared/1.0.0": {
         "runtime": {
-          "ArgentoApp.Backend.Shared.dll": {}
+          "ArgentoApp.Backend.Shared.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
