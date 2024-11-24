@@ -1,0 +1,20 @@
+﻿@model ArgentoApp.Frontend.Mvc.Models.Identity.LoginViewModel
+<div class="container-fluid contact py-5">
+    <div class="container py-5">
+        <div class="p-5 bg-light rounded">
+            <div class="row g-4 py-5">
+                <div class="col-md-4 m-auto mt-5">
+                    <form asp-area="" asp-controller="Account" asp-action="Login" method="post">
+                        <input type="hidden" asp-for="ReturnUrl" />
+                        <div class="text-danger" asp-validation-summary="All"></div>
+                        <input asp-for="UserName" class="w-100 form-control border-0 py-3 mb-4"
+                            placeholder="Kullanıcı Adı">
+                        <input asp-for="Password" class="w-100 form-control border-0 py-3 mb-4" placeholder="Parola">
+                        <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary "
+                            type="submit">Giriş Yap</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

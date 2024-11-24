@@ -85,4 +85,16 @@ public class CartRepository
             return response.IsSucceeded;
         }
     }
+    public static async Task<bool> ClearCartAsync(int cartId)
+    {
+        ResponseModel<CartViewModel> response = new();
+        using (HttpClient httpClient = new())
+        {
+            HttpResponseMessage httpResponseMessage = await httpClient.DeleteAsync($"http://localhost:5200/api/Carts/ClearCart/{cartId}");
+            string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
+            response = JsonConvert.DeserializeObject<ResponseModel<CartViewModel>>(contentResponse);
+
+            return response.IsSucceeded;
+        }
+    }
 }

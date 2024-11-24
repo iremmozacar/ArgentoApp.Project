@@ -8,8 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<AppUser, AppRole>()
     .AddEntityFrameworkStores<AppDbContext>()
@@ -22,6 +21,14 @@ builder.Services.AddNotyf(config =>
     config.IsDismissable = true;
 });
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(5);
+    options.Cookie.HttpOnly = true;
+
+});
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -30,26 +37,24 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
-// Remove ambiguous HTTPS redirection
 app.UseHttpsRedirection();
-
-// Add port configuration
-builder.WebHost.UseUrls("http://localhost:5000", "https://localhost:5001");
 app.UseStaticFiles();
 
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 
-// Admin Area Route
+//localhost:5000/admin/home/index
 app.MapAreaControllerRoute(
     name: "admin",
     pattern: "Admin/{controller=Home}/{action=Index}/{id?}",
     areaName: "Admin"
 );
 
-// Default Route
+
+//localhost:5000/Product/Create
+//localhost:5000/
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

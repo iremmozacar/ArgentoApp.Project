@@ -9,7 +9,7 @@ public class OrderItemViewModel
     public int ProductId { get; set; }
 
     [JsonPropertyName("price")]
-    public int Price { get; set; }
+    public decimal Price { get; set; }
 
     [JsonPropertyName("quantity")]
     public int Quantity { get; set; }

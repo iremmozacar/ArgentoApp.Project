@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using ArgentoApp.Frontend.Mvc.Models.Order;
 using ArgentoApp.Frontend.Mvc.Models.Other;
 using ArgentoApp.Frontend.Mvc.Models.Product;
 using ArgentoApp.Frontend.Mvc.Models.Response;
@@ -21,5 +22,17 @@ public class OrderRepository
             return response;
         }
     }
-
+    public static async Task<List<OrderViewModel>> GetOrdersByUserIdAsync(string userId)
+    {
+        ResponseModel<List<OrderViewModel>> responseModel = new();
+        using (HttpClient httpClient = new())
+        {
+            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync($"http://localhost:5000/api/Orders/GetOrdersByUserId/{userId}");
+            string contentResponse = await httpResponseMessage.Content.ReadAsStringAsync();
+            responseModel = JsonConvert.DeserializeObject<ResponseModel<List<OrderViewModel>>>(contentResponse);
+        }
+        List<OrderViewModel> responseList = responseModel.IsSucceeded ?
+                    responseModel.Data : [];
+        return responseList;
+    }
 }

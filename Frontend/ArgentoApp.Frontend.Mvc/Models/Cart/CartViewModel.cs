@@ -17,6 +17,8 @@ public class CartViewModel
     [JsonPropertyName("cartItems")]
     public List<CartItemViewModel> CartItems { get; set; }
 
+    public int CountOfItem { get { return CartItems.Count; } }
+
     public decimal GetTotalPrice()
     {
         return CartItems.Sum(x => x.Product.Price * x.Quantity);
