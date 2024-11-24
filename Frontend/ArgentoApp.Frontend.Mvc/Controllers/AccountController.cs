@@ -36,39 +36,29 @@ namespace ArgentoApp.Frontend.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Kullanıcı var mı kontrolü
+                // Kullanıcı var mı yok mu kontrolü
                 var user = await _userManager.FindByNameAsync(model.UserName);
                 if (user == null)
                 {
-                    _notyfService.Error("Kullanıcı adı veya şifre hatalı.");
+                    _notyfService.Error("Böyle bir kullanıcı yok!");
                     return View(model);
                 }
-
-                // Kullanıcı emaili onaylı mı kontrolü
+                // Kullanıcı emaili onaylı mı değil mi kontrolü
                 bool isApproved = await _userManager.IsEmailConfirmedAsync(user);
                 if (!isApproved)
                 {
-                    _notyfService.Warning("Hesabınızın onaylanması bekleniyor. Lütfen e-posta adresinizi kontrol edin.");
+                    _notyfService.Warning("Email onaylı değil!");
                     return View(model);
                 }
-
-                // Giriş işlemi
+                // Login olma işlemi
                 var result = await _signInManager.PasswordSignInAsync(user, model.Password, true, true);
                 if (!result.Succeeded)
                 {
-                    _notyfService.Error("Giriş yaparken bir hata oluştu. Lütfen şifrenizi kontrol edin.");
+                    _notyfService.Error("Hatalı parola!");
                     return View(model);
                 }
-
-                // ReturnUrl kontrolü ve yönlendirme
-                if (Url.IsLocalUrl(model.ReturnUrl))
-                {
-                    return Redirect(model.ReturnUrl);
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+                //EĞER BURAYA KADAR GELMİŞSE ARTIK LOGIN OLMUŞ DEMEKTİR!
+                return Redirect(model.ReturnUrl ?? "~/");
             }
             return View(model);
         }

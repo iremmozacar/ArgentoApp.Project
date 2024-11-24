@@ -43,5 +43,27 @@ namespace ArgentoApp.Frontend.Mvc.Controllers
                 return RedirectToAction("Index");
             }
 
+        [HttpPost]
+        public async Task<IActionResult> ChangeQuantity(int cartItemId, int quantity)
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var userId = await _userManager.GetUserIdAsync(user);
+            ReturnChangeQuantityModel model = await CartRepository.ChangeQuantityAsync(cartItemId, quantity, userId);
+            // var modelJson = JsonConvert.SerializeObject(model);
+            return Json(model);
         }
+
+        public async Task<IActionResult> DeleteCartItem(int id)
+        {
+            var isSucceeded = await CartRepository.DeleteCartItemAsync(id);
+            if (!isSucceeded)
+            {
+                _notyfService.Error("Bir hata oluştu");
+            }
+            _notyfService.Success("Ürün sepetinizden başarıyla kaldırıldı");
+            return RedirectToAction("Index");
+
+        }
+
+    }
     }

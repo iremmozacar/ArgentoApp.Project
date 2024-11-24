@@ -1,0 +1,8 @@
+﻿@model ArgentoApp.Frontend.Mvc.Models.Order.OrderCreateViewModel
+
+<h1>SİPARİŞ</h1>
+<h1>@Model.UserId</h1>
+@foreach (var cartItem in Model.Cart.CartItems)
+{
+    <div>@cartItem.Product.Name</div>
+}
